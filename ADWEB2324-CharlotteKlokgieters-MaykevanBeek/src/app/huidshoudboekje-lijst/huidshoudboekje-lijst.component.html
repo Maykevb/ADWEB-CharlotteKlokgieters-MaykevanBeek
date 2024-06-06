@@ -1,0 +1,17 @@
+<input [(ngModel)]="query" placeholder="zoek">
+<br>
+<br>
+<ul>
+  <div *ngFor="let huishoudboekje of huishoudboekjes | festivalSearch:query">
+    <li class="huishoudboekje-item">
+      <a routerLink="../huishoudboekje/{{huishoudboekje.id}}">
+        <h1>- {{ huishoudboekje.naam }} -</h1>
+        <div>{{huishoudboekje.omschrijving}}</div>
+        <div>
+          <button (click)="onDelete(huishoudboekje)">Archiveer</button>
+        </div>
+      </a>
+    </li>
+  </div>
+</ul>
+<!---->

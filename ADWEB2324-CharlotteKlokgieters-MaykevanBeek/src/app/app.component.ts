@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Festival } from './models/festival.model';
 
 @Component({
   selector: 'app-root',
@@ -7,5 +6,5 @@ import { Festival } from './models/festival.model';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'Festivals';
+  title = 'Huishoudboekjes';
 }

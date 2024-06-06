@@ -10,7 +10,7 @@ import { Firestore, getFirestore, onSnapshot, collection, doc, addDoc, deleteDoc
 })
 export class FestivalService {
 
-  firestore: Firestore;
+  /*firestore: Firestore;*/
 
   constructor() {
     // Import the functions you need from the SDKs you need
@@ -28,13 +28,14 @@ export class FestivalService {
     };
 
     // Initialize Firebase
-    const app = initializeApp(firebaseConfig);
+   /* const app = initializeApp(firebaseConfig);*/
 
-    this.firestore = getFirestore(app);
+    /*this.firestore = getFirestore(app);*/
   }
 
+  // @ts-ignore
   getFestivals(): Observable<Festival[]> {
-    return new Observable((subscriber: Subscriber<any[]>) => {
+   /* return new Observable((subscriber: Subscriber<any[]>) => {
       onSnapshot(collection(this.firestore, 'festivals'), (snapshot) => {
         let festivals = snapshot.docs.map((doc: any) => {
           let festival = doc.data();
@@ -49,11 +50,12 @@ export class FestivalService {
         // });
         subscriber.next(festivals);
       });
-    });
+    });*/
   }
 
+  // @ts-ignore
   getFestival(id: string): Observable<Festival | undefined> {
-    return new Observable((subscriber: Subscriber<any>) => {
+   /* return new Observable((subscriber: Subscriber<any>) => {
       if (id == "") {
         subscriber.next(null);
       } else {
@@ -65,33 +67,37 @@ export class FestivalService {
           subscriber.next(festival);
         });
       }
-    })
+    })*/
   }
 
+  // @ts-ignore
   getOrganiser(id: string): Observable<string> {
-    return new Observable((subscriber: Subscriber<any>) => {
+   /* return new Observable((subscriber: Subscriber<any>) => {
       onSnapshot(doc(this.firestore, "organisers", id), (doc: any) => {
         subscriber.next(doc.data() ? doc.data()["name"] : "Error");
       });
-    });
+    });*/
   }
 
+  // @ts-ignore
   getParticipant(id: string): Observable<string> {
-    return new Observable((subscriber: Subscriber<any>) => {
+    /*return new Observable((subscriber: Subscriber<any>) => {
       onSnapshot(doc(this.firestore, "participants", id), (doc: any) => {
         subscriber.next(doc.data() ? doc.data()["name"] : "Error");
       });
-    });
+    });*/
   }
 
+  // @ts-ignore
   getFestivalOrganiser(id: string): Observable<string> {
-    return this.getFestival(id).pipe(mergeMap((festival: any) => {
+  /*  return this.getFestival(id).pipe(mergeMap((festival: any) => {
       return this.getOrganiser(festival.organiser);
-    }));
+    }));*/
   }
 
+  // @ts-ignore
   getFestivalParticipants(id: string): Observable<string[]> {
-    return this.getFestival(id).pipe(mergeMap((festival: any) => {
+    /*return this.getFestival(id).pipe(mergeMap((festival: any) => {
       let participants$: Observable<string>[] = [];
 
       if (festival.participants) {
@@ -101,21 +107,21 @@ export class FestivalService {
       }
 
       return combineLatest(participants$);
-    }));
+    }));*/
   }
 
   addFestival(festival: Festival) {
-    const { id, ...object } = Object.assign({}, festival);
-    addDoc(collection(this.firestore, 'festivals'), object);
+   /* const { id, ...object } = Object.assign({}, festival);
+    addDoc(collection(this.firestore, 'festivals'), object);*/
   }
 
   deleteFestival(festival: Festival) {
-    deleteDoc(doc(this.firestore, "festivals", festival.id));
+ /*   deleteDoc(doc(this.firestore, "festivals", festival.id));*/
   }
 
   updateEvent(festival: Festival) {
-    const { id, ...object } = Object.assign({}, festival);
-    updateDoc(doc(this.firestore, "festivals", festival.id), object);
+    /*const { id, ...object } = Object.assign({}, festival);
+    updateDoc(doc(this.firestore, "festivals", festival.id), object);*/
   }
 }
 

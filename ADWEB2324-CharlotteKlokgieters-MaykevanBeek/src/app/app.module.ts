@@ -8,6 +8,7 @@ import { FestivalListComponent } from './festival-list/festival-list.component';
 import { FestivalDetailsComponent } from './festival-details/festival-details.component';
 import { FestivalCreateComponent } from './festival-create/festival-create.component';
 import { FestivalSearchPipe } from './festival-search.pipe';
+import { HuidshoudboekjeLijstComponent } from './huidshoudboekje-lijst/huidshoudboekje-lijst.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { FestivalSearchPipe } from './festival-search.pipe';
     FestivalListComponent,
     FestivalDetailsComponent,
     FestivalCreateComponent,
-    FestivalSearchPipe
+    FestivalSearchPipe,
+    HuidshoudboekjeLijstComponent
   ],
   imports: [
     BrowserModule,
