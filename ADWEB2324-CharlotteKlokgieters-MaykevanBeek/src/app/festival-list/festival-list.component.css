@@ -1,0 +1,25 @@
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    user-select: none;
+
+    border: 1px solid black;
+}
+
+li {
+    margin: 5px;
+    padding: 5px;
+}
+
+li div {
+    display: flex;
+
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.selected {
+    color: white;
+    background: blue;
+}

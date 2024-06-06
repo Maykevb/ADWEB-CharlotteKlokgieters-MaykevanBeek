@@ -1,0 +1,11 @@
+<input [(ngModel)]="query" placeholder="search">
+<br>
+<br>
+<ul>
+    <li *ngFor="let festival of festivals | festivalSearch:query">
+        <div>
+            <a routerLink="../festival/{{festival.id}}">{{festival.name}}</a>
+            <button (click)="onDelete(festival)">-</button>
+        </div>
+    </li>
+</ul>
