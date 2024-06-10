@@ -9,6 +9,7 @@ import { FestivalDetailsComponent } from './festival-details/festival-details.co
 import { FestivalCreateComponent } from './festival-create/festival-create.component';
 import { FestivalSearchPipe } from './festival-search.pipe';
 import { HuidshoudboekjeLijstComponent } from './huidshoudboekje-lijst/huidshoudboekje-lijst.component';
+import { HuishoudboekjeCreeerComponent } from './huishoudboekje-creeer/huishoudboekje-creeer.component';
 import {HuishoudboekjeZoekPipe} from "./huishoudboekje-zoek.pipe";
 
 @NgModule({
@@ -18,8 +19,9 @@ import {HuishoudboekjeZoekPipe} from "./huishoudboekje-zoek.pipe";
     FestivalDetailsComponent,
     FestivalCreateComponent,
     FestivalSearchPipe,
+    HuidshoudboekjeLijstComponent,
+    HuishoudboekjeCreeerComponent,
     HuishoudboekjeZoekPipe,
-    HuidshoudboekjeLijstComponent
   ],
   imports: [
     BrowserModule,
