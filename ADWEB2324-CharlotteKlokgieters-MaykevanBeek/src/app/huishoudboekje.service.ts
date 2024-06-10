@@ -66,7 +66,7 @@ export class HuishoudboekjeService {
     deleteDoc(doc(this.firestore, "Huishoudboekjes", huishoudboekje.id));
   }
 
-  updateEvent(huishoudboekje: Huishoudboekje) {
+  updateHuishoudboekje(huishoudboekje: Huishoudboekje) {
     const { id, ...object } = Object.assign({}, huishoudboekje);
     updateDoc(doc(this.firestore, "Huishoudboekjes", huishoudboekje.id), object);
   }

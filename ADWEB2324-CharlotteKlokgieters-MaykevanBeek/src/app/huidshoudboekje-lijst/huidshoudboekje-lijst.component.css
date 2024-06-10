@@ -22,7 +22,7 @@ li {
   background-color: #ffe5e9;
   padding: 20px;
   border-radius: 12px;
-  /*box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);*/
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
   width: 20%;
   border: 2px solid #ff99aa;
@@ -59,9 +59,34 @@ button {
   border-radius: 12px;
   transition: background-color 0.3s ease, transform 0.3s ease;
   margin-top: 10px;
+  margin-right: 10px;
 }
 
 button:hover {
   background-color: #ff6688;
   transform: scale(1.05);
+}
+
+.edit-input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 2px solid #ff99aa;
+  border-radius: 8px;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+label {
+  color: #ff6688;
+  font-size: 18px;
+  text-align: center;
+  width: 100%;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
 }

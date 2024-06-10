@@ -8,6 +8,7 @@ export class Huishoudboekje {
   uitgaven: Uitgave[];
   inkomsten: Inkomsten[];
   gearchiveerd: boolean;
+  editMode?: boolean;
 
   constructor(id: string, omschrijving: string, naam: string) {
     this.id = id;
