@@ -1,1 +1,7 @@
-<p>categorie-creeer works!</p>
+<div class="create-item">
+  <h1>Voeg nieuwe categorie toe</h1>
+  <div>
+    <input [(ngModel)]="categorie.naam" placeholder="naam">
+    <button (click)="onAdd()">+</button>
+  </div>
+</div>

@@ -16,6 +16,7 @@ import {HuishoudboekjeDetailsComponent} from "./huishoudboekje-details/huishoudb
     AppComponent,
     HuidshoudboekjeLijstComponent,
     HuishoudboekjeCreeerComponent,
+    HuishoudboekjeDetailsComponent,
     HuishoudboekjeZoekPipe,
     HuishoudboekjeDetailsComponent,
     SaldoCreeerComponent,
