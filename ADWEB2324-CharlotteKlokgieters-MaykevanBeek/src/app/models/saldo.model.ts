@@ -1,4 +1,4 @@
-export class Uitgave {
+export class Saldo {
   id: string;
   tag: string;
   categorie: string;
@@ -11,3 +11,4 @@ export class Uitgave {
     this.bedrag = parseFloat(bedrag);
   }
 }
+
