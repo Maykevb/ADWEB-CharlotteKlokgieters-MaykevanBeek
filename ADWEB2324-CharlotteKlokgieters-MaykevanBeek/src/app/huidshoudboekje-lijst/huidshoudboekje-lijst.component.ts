@@ -8,9 +8,13 @@ import { HuishoudboekjeService } from '../huishoudboekje.service';
   styleUrls: ['./huidshoudboekje-lijst.component.css']
 })
 export class HuidshoudboekjeLijstComponent {
-  query: string = '';
-
+  query: string = ""
+  activeTab: string = 'active';
   huishoudboekjes: Huishoudboekje[] = [];
+
+  setActiveTab(tab: string) {
+    this.activeTab = tab;
+  }
 
   constructor(private service: HuishoudboekjeService) {
     service.getHuishoudboekjes().subscribe(huishoudboekjes => {
@@ -27,7 +31,10 @@ export class HuidshoudboekjeLijstComponent {
     this.service.updateHuishoudboekje(huishoudboekje);
   }
 
-  onDelete(huishoudboekje: Huishoudboekje) {
-    this.service.deleteHuishoudboekje(huishoudboekje)
+  onArchive(huishoudboekje: Huishoudboekje, archive: boolean) {
+    huishoudboekje.gearchiveerd = archive;
+    this.service.updateHuishoudboekje(huishoudboekje);
   }
 }
+
+

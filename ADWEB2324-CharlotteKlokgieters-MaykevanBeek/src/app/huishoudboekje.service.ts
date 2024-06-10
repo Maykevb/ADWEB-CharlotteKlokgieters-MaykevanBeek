@@ -62,9 +62,9 @@ export class HuishoudboekjeService {
     addDoc(collection(this.firestore, 'Huishoudboekjes'), object);
   }
 
-  deleteHuishoudboekje(huishoudboekje: Huishoudboekje) {
+/*  deleteHuishoudboekje(huishoudboekje: Huishoudboekje) {
     deleteDoc(doc(this.firestore, "Huishoudboekjes", huishoudboekje.id));
-  }
+  }*/
 
   updateHuishoudboekje(huishoudboekje: Huishoudboekje) {
     const { id, ...object } = Object.assign({}, huishoudboekje);
