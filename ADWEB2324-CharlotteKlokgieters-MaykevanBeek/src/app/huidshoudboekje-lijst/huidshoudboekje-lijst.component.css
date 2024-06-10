@@ -22,9 +22,10 @@ li {
   background-color: #ffe5e9;
   padding: 20px;
   border-radius: 12px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
+  /*box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);*/
   margin-bottom: 20px;
   width: 20%;
+  border: 2px solid #ff99aa;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -52,7 +53,7 @@ button {
   padding: 10px 20px;
   text-align: center;
   font-size: 16px;
-  font-weigth: bold;
+  font-weight: bold;
   cursor: pointer;
   border-radius: 12px;
   transition: background-color 0.3s ease, transform 0.3s ease;
