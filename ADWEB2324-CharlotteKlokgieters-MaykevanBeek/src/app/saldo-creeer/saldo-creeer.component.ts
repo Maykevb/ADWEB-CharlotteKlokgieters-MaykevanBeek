@@ -1,10 +1,24 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { HuishoudboekjeService } from "../huishoudboekje.service";
+import { Saldo } from "../models/saldo.model";
+import { Huishoudboekje } from "../models/huishoudboekje.model";
 
 @Component({
   selector: 'app-saldo-creeer',
   templateUrl: './saldo-creeer.component.html',
-  styleUrl: './saldo-creeer.component.css'
+  styleUrls: ['./saldo-creeer.component.css']
 })
 export class SaldoCreeerComponent {
+  saldo: Saldo = new Saldo("", "", "", "");
 
+  @Input() huishoudboekje: string | null | undefined;
+
+  constructor(private service: HuishoudboekjeService) {}
+
+  onAdd() {
+    if (this.saldo.bedrag != 0) {
+      this.service.addSaldo(this.saldo);
+      this.saldo = new Saldo("", "", "", "");
+    }
+  }
 }

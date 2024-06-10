@@ -9,6 +9,7 @@ import { HuishoudboekjeCreeerComponent } from './huishoudboekje-creeer/huishoudb
 import { HuishoudboekjeZoekPipe} from "./huishoudboekje-zoek.pipe";
 import { SaldoCreeerComponent } from './saldo-creeer/saldo-creeer.component';
 import { CategorieCreeerComponent } from './categorie-creeer/categorie-creeer.component';
+import {HuishoudboekjeDetailsComponent} from "./huishoudboekje-details/huishoudboekje-details.component";
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { CategorieCreeerComponent } from './categorie-creeer/categorie-creeer.co
     HuidshoudboekjeLijstComponent,
     HuishoudboekjeCreeerComponent,
     HuishoudboekjeZoekPipe,
+    HuishoudboekjeDetailsComponent,
     SaldoCreeerComponent,
     CategorieCreeerComponent,
   ],

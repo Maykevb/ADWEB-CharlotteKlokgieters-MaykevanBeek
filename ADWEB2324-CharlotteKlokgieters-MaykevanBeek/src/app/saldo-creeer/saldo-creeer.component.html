@@ -1,1 +1,8 @@
-<p>saldo-creeer works!</p>
+<div class="create-item">
+  <h1>Voeg nieuw huishoudboekje toe</h1>
+  <div>
+    <input [(ngModel)]="saldo.tag" placeholder="tag">
+    <input [(ngModel)]="saldo.bedrag" placeholder="bedrag">
+    <button (click)="onAdd()">+</button>
+  </div>
+</div>
