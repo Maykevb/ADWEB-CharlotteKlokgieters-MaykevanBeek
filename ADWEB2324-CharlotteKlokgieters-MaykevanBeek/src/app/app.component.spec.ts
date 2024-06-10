@@ -1,7 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
-import { FestivalCreateComponent } from './festival-create/festival-create.component';
 import { FormsModule } from '@angular/forms';
 
 describe('AppComponent', () => {
@@ -11,7 +10,7 @@ describe('AppComponent', () => {
         RouterTestingModule, FormsModule
       ],
       declarations: [
-        AppComponent, FestivalCreateComponent
+        AppComponent
       ],
     }).compileComponents();
   });
@@ -22,16 +21,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'Festivals'`, () => {
+  it(`should have as title 'Huishoudboekjes'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('Festivals');
+    expect(app.title).toEqual('Huishoudboekjes');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Festivals');
+    expect(compiled.querySelector('h1')?.textContent).toContain('Huishoudboekjes');
   });
 });
