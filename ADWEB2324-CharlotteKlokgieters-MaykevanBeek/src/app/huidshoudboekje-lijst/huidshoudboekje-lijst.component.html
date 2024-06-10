@@ -1,34 +1,35 @@
 <input [(ngModel)]="query" placeholder="zoek">
 
-<div>
+<div class="tabs">
   <button (click)="setActiveTab('active')">Huishoudboekjes</button>
   <button (click)="setActiveTab('archived')">Gearchiveerd</button>
 </div>
+<div class="huishoudboekjes">
+  <ul *ngIf="activeTab === 'active'">
+    <div *ngFor="let huishoudboekje of huishoudboekjes | huishoudboekjeZoek:query">
+      <li *ngIf="!huishoudboekje.gearchiveerd" class="huishoudboekje-item">
+        <a routerLink="../huishoudboekje/{{huishoudboekje.id}}">
+          <h1>- {{ huishoudboekje.naam }} -</h1>
+          <div>{{huishoudboekje.omschrijving}}</div>
+        </a>
+        <div>
+          <button (click)="onArchive(huishoudboekje, true)">Archiveer</button>
+        </div>
+      </li>
+    </div>
+  </ul>
 
-<ul *ngIf="activeTab === 'active'">
-  <div *ngFor="let huishoudboekje of huishoudboekjes | huishoudboekjeZoek:query">
-    <li *ngIf="!huishoudboekje.gearchiveerd" class="huishoudboekje-item">
-      <a routerLink="../huishoudboekje/{{huishoudboekje.id}}">
-        <h1>- {{ huishoudboekje.naam }} -</h1>
-        <div>{{huishoudboekje.omschrijving}}</div>
-      </a>
-      <div>
-        <button (click)="onArchive(huishoudboekje, true)">Archiveer</button>
-      </div>
-    </li>
-  </div>
-</ul>
-
-<ul *ngIf="activeTab === 'archived'">
-  <div *ngFor="let huishoudboekje of huishoudboekjes | huishoudboekjeZoek:query">
-    <li *ngIf="huishoudboekje.gearchiveerd" class="huishoudboekje-item">
-      <a routerLink="../huishoudboekje/{{huishoudboekje.id}}">
-        <h1>- {{ huishoudboekje.naam }} -</h1>
-        <div>{{huishoudboekje.omschrijving}}</div>
-      </a>
-      <div>
-        <button (click)="onArchive(huishoudboekje, false)">Dearchiveer</button>
-      </div>
-    </li>
-  </div>
-</ul>
+  <ul *ngIf="activeTab === 'archived'">
+    <div *ngFor="let huishoudboekje of huishoudboekjes | huishoudboekjeZoek:query">
+      <li *ngIf="huishoudboekje.gearchiveerd" class="huishoudboekje-item">
+        <a routerLink="../huishoudboekje/{{huishoudboekje.id}}">
+          <h1>- {{ huishoudboekje.naam }} -</h1>
+          <div>{{huishoudboekje.omschrijving}}</div>
+        </a>
+        <div>
+          <button (click)="onArchive(huishoudboekje, false)">Dearchiveer</button>
+        </div>
+      </li>
+    </div>
+  </ul>
+</div>
