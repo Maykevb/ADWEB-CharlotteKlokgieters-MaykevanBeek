@@ -9,8 +9,12 @@ import {HuishoudboekjeService} from "../huishoudboekje.service";
 })
 export class HuidshoudboekjeLijstComponent {
   query: string = ""
-
+  activeTab: string = 'active';
   huishoudboekjes: Huishoudboekje[] = [];
+
+  setActiveTab(tab: string) {
+    this.activeTab = tab;
+  }
 
   constructor(private service: HuishoudboekjeService) {
     service.getHuishoudboekjes().subscribe(huishoudboekjes => {
@@ -18,8 +22,9 @@ export class HuidshoudboekjeLijstComponent {
     })
   }
 
-  onDelete(huishoudboekje: Huishoudboekje) {
-    this.service.deleteHuishoudboekje(huishoudboekje);
+  onArchive(huishoudboekje: Huishoudboekje, archive: boolean) {
+    huishoudboekje.gearchiveerd = archive;
+    this.service.updateHuishoudboekje(huishoudboekje);
   }
 }
 

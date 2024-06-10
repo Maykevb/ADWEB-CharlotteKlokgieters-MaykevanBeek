@@ -1,14 +1,34 @@
 <input [(ngModel)]="query" placeholder="zoek">
-<ul>
+
+<div>
+  <button (click)="setActiveTab('active')">Huishoudboekjes</button>
+  <button (click)="setActiveTab('archived')">Gearchiveerd</button>
+</div>
+
+<ul *ngIf="activeTab === 'active'">
   <div *ngFor="let huishoudboekje of huishoudboekjes | huishoudboekjeZoek:query">
-    <li class="huishoudboekje-item">
+    <li *ngIf="!huishoudboekje.gearchiveerd" class="huishoudboekje-item">
       <a routerLink="../huishoudboekje/{{huishoudboekje.id}}">
         <h1>- {{ huishoudboekje.naam }} -</h1>
         <div>{{huishoudboekje.omschrijving}}</div>
-        <div>
-          <button (click)="onDelete(huishoudboekje)">Archiveer</button>
-        </div>
       </a>
+      <div>
+        <button (click)="onArchive(huishoudboekje, true)">Archiveer</button>
+      </div>
+    </li>
+  </div>
+</ul>
+
+<ul *ngIf="activeTab === 'archived'">
+  <div *ngFor="let huishoudboekje of huishoudboekjes | huishoudboekjeZoek:query">
+    <li *ngIf="huishoudboekje.gearchiveerd" class="huishoudboekje-item">
+      <a routerLink="../huishoudboekje/{{huishoudboekje.id}}">
+        <h1>- {{ huishoudboekje.naam }} -</h1>
+        <div>{{huishoudboekje.omschrijving}}</div>
+      </a>
+      <div>
+        <button (click)="onArchive(huishoudboekje, false)">Dearchiveer</button>
+      </div>
     </li>
   </div>
 </ul>
