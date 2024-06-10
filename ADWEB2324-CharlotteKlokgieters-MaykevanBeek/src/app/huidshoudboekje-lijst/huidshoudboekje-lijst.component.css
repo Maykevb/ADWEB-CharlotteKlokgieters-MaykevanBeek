@@ -1,12 +1,25 @@
 input {
   width: 100%;
   padding: 10px;
-  margin-bottom: 20px;
+  margin: 20px;
   border: 2px solid #ff99aa;
   border-radius: 8px;
   box-sizing: border-box;
   font-size: 16px;
-  width: 15%;
+  width: 80%;
+}
+
+.search {
+  text-align: center;
+  background: #ffe5e9;
+  margin: 0;
+  border-radius: 12px;
+  border: 2px solid #ff99aa;
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: bold;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
+  width: 30%;
 }
 
 ul {
