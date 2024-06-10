@@ -7,6 +7,7 @@ export class Huishoudboekje {
   omschrijving: string;
   uitgaven: Uitgave[];
   inkomsten: Inkomsten[];
+  gearchiveerd: boolean;
 
   constructor(id: string, omschrijving: string, naam: string) {
     this.id = id;
@@ -14,6 +15,7 @@ export class Huishoudboekje {
     this.omschrijving = omschrijving;
     this.uitgaven = [];
     this.inkomsten = [];
+    this.gearchiveerd = false;
   }
 
   addUitgave(uitgave: Uitgave): void {
