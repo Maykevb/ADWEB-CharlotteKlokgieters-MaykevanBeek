@@ -83,7 +83,7 @@ li {
   margin-bottom: 10px;
 }
 
-.huishoudboekje-item a {
+.huishoudboekje-item a, .huishoudboekje-item div {
   text-decoration: none;
   color: #ff6688;
   font-size: 18px;
