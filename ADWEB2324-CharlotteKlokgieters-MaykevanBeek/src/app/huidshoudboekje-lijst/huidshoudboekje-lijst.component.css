@@ -7,6 +7,19 @@ input {
   font-size: 16px;
 }
 
+.new-flex app-saldo-creeer {
+  width: 100px;
+}
+
+.new-flex {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem;
+}
+
 .input-search {
   padding: 10px;
   margin: 20px;
