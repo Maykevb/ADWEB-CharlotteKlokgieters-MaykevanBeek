@@ -1,7 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { HuishoudboekjeService } from "../huishoudboekje.service";
 import { Saldo } from "../models/saldo.model";
-import { Huishoudboekje } from "../models/huishoudboekje.model";
 import {SaldoService} from "../saldo.service";
 
 @Component({
@@ -18,7 +16,6 @@ export class SaldoCreeerComponent {
 
   onAdd() {
     if (this.saldo.bedrag != 0) {
-      this.saldo.datum = new Date();
       this.service.addSaldo(this.saldo);
       this.saldo = new Saldo("", "");
     }

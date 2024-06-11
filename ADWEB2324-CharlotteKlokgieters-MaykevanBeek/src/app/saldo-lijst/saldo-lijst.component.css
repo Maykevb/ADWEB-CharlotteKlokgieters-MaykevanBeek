@@ -12,6 +12,22 @@
   min-width: 700px;
 }
 
+.month-picker {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  padding: 20px;
+  color: #ff6688;
+  border-radius: 12px;
+  border: 2px solid #ff99aa;
+  width: 50%;
+  background-color: #fff2f4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto auto 20px auto;
+}
+
 .saldo-item {
   display: flex;
   flex-direction: column;

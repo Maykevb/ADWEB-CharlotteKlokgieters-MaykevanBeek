@@ -3,7 +3,6 @@ import { Observable, Subscriber } from 'rxjs';
 
 import { initializeApp } from "firebase/app";
 import { Firestore, getFirestore, onSnapshot, collection, doc, addDoc, deleteDoc, updateDoc } from "firebase/firestore";
-import {Categorie} from "./models/categorie.model";
 import {Saldo} from "./models/saldo.model";
 
 @Injectable({
@@ -31,6 +30,8 @@ export class SaldoService {
 
   addSaldo(saldo: Saldo) {
     const { id, ...object } = Object.assign({}, saldo);
+    const currentDate = new Date().toISOString().split('T')[0];
+    object.datum = currentDate;
     addDoc(collection(this.firestore, 'Saldo'), object);
   }
 
@@ -45,6 +46,7 @@ export class SaldoService {
         });
 
         let positiveSaldo = saldo.filter((s: Saldo) => s.bedrag > 0);
+        positiveSaldo.sort((a: Saldo, b: Saldo) => { return b.datum.localeCompare(a.datum); });
 
         subscriber.next(positiveSaldo);
       });
@@ -58,12 +60,14 @@ export class SaldoService {
           let individualSaldo = doc.data();
           individualSaldo['id'] = doc.id;
           individualSaldo.bedrag = parseFloat(individualSaldo.bedrag).toFixed(2);
+          individualSaldo.datum = new Date(individualSaldo.datum);
           return individualSaldo;
         });
 
-        let positiveSaldo = saldo.filter((s: Saldo) => s.bedrag < 0);
+        let negativeSaldo = saldo.filter((s: Saldo) => s.bedrag < 0);
+        negativeSaldo.sort((a: Saldo, b: Saldo) => { return b.datum.localeCompare(a.datum); });
 
-        subscriber.next(positiveSaldo);
+        subscriber.next(negativeSaldo);
       });
     });
   }
