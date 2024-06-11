@@ -1,8 +1,23 @@
 <div class="categorie-list">
   <h1>Categorieën</h1>
   <div *ngFor="let categorie of categorieen" class="categorie-item">
-    <li class="categorie-item">
-        {{ categorie.naam }}
-    </li>
+    <div *ngIf="!categorie.editMode" class="mode">
+      <ul>
+        <div>{{ categorie.naam }}</div>
+      </ul>
+      <div class="button-container">
+        <button (click)="toggleEdit(categorie)">✎</button>
+        <button (click)="onDelete(categorie)" id="delete">-</button>
+      </div>
+    </div>
+    <div *ngIf="categorie.editMode" class="mode">
+      <ul>
+        <input id="naam-{{categorie.id}}" [(ngModel)]="categorie.naam" placeholder="Naam" class="edit-input">
+      </ul>
+      <div class="button-container">
+        <button (click)="onSave(categorie)">💾</button>
+        <button (click)="toggleEdit(categorie)">🗙</button>
+      </div>
+    </div>
   </div>
 </div>

@@ -9,12 +9,23 @@
   margin-bottom: 20px;
   font-size: 20px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
-  min-width: 500px;
+  min-width: 700px;
 }
 
 .categorie-item {
-  padding-left: 20px;
   color: #ff6688;
+  border: #ff99aa 2px solid;
+  background-color: #fff2f4;
+  padding-left: -15px;
+  border-radius: 12px;
+  margin: 0;
+}
+
+.mode {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
 }
 
 div {
@@ -29,4 +40,37 @@ h1 {
   color: #333;
   text-align: center;
   margin-bottom: 10px;
+}
+
+button {
+  background-color: #ff99aa;
+  border: none;
+  color: white;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 12px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  margin-right: 10px;
+}
+
+#delete {
+  font-weight: bolder;
+}
+
+.button-container {
+  gap: 0;
+  margin-top: 18px;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid #ff99aa;
+  border-radius: 8px;
+  box-sizing: border-box;
+  font-size: 16px;
 }
