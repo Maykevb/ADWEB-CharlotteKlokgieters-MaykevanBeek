@@ -2,7 +2,7 @@
   <h1>Voeg nieuw saldo toe</h1>
   <div>
     <input [(ngModel)]="saldo.tag" placeholder="tag">
-    <input [(ngModel)]="saldo.bedrag" placeholder="bedrag">
+    <input type="number" [(ngModel)]="saldo.bedrag" placeholder="bedrag">
     <button (click)="onAdd()">+</button>
   </div>
 </div>

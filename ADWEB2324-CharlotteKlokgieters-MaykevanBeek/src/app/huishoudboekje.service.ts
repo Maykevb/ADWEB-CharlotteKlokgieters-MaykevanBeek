@@ -73,7 +73,8 @@ export class HuishoudboekjeService {
   }
 
   addSaldo(saldo: Saldo) {
-
+    const { id, ...object } = Object.assign({}, saldo);
+    addDoc(collection(this.firestore, 'Saldo'), object);
   }
 }
 
