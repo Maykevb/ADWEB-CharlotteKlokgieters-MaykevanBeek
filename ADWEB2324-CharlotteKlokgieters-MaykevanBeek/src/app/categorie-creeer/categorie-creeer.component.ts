@@ -11,6 +11,7 @@ export class CategorieCreeerComponent {
   categorie: Categorie = new Categorie("", "");
 
   constructor(private service: CategorieService) {
+
   }
 
   onAdd() {

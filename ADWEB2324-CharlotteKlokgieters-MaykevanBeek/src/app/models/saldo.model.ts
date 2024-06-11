@@ -6,10 +6,11 @@ export class Saldo {
   categorie: Categorie | null;
   bedrag: number;
 
-  constructor(id: string, tag: string, bedrag: string) {
+  constructor(id: string, tag: string) {
     this.id = id;
     this.tag = tag;
-    this.bedrag = parseFloat(bedrag);
+    // @ts-ignore
+    this.bedrag = undefined;
     this.categorie = null;
   }
 }

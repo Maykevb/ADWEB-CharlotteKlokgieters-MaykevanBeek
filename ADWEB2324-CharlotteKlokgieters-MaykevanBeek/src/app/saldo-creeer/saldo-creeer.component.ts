@@ -9,7 +9,7 @@ import { Huishoudboekje } from "../models/huishoudboekje.model";
   styleUrls: ['./saldo-creeer.component.css']
 })
 export class SaldoCreeerComponent {
-  saldo: Saldo = new Saldo("", "",  "");
+  saldo: Saldo = new Saldo("", "");
 
   @Input() huishoudboekje: string | null | undefined;
 
@@ -18,7 +18,7 @@ export class SaldoCreeerComponent {
   onAdd() {
     if (this.saldo.bedrag != 0) {
       this.service.addSaldo(this.saldo);
-      this.saldo = new Saldo("", "", "");
+      this.saldo = new Saldo("", "");
     }
   }
 }
