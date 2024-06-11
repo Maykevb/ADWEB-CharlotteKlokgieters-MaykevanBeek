@@ -28,6 +28,7 @@ input {
   font-weight: bold;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
   width: 30%;
+  height: fit-content;
 }
 
 .tabs button {
@@ -52,6 +53,13 @@ ul {
 
 li {
   margin-bottom: 20px;
+}
+
+.flex {
+  display: flex;
+  flex-direction: row;
+  gap: 80px;
+  align-items: flex-end;
 }
 
 .huishoudboekje-item {
