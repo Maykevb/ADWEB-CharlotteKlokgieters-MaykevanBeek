@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { HuishoudboekjeService } from "../huishoudboekje.service";
 import { Saldo } from "../models/saldo.model";
 import { Huishoudboekje } from "../models/huishoudboekje.model";
+import {SaldoService} from "../saldo.service";
 
 @Component({
   selector: 'app-saldo-creeer',
@@ -13,7 +14,7 @@ export class SaldoCreeerComponent {
 
   @Input() huishoudboekje: string | null | undefined;
 
-  constructor(private service: HuishoudboekjeService) {}
+  constructor(private service: SaldoService) {}
 
   onAdd() {
     if (this.saldo.bedrag != 0) {

@@ -1,0 +1,12 @@
+<div class="saldo-list">
+  <h1>Saldo</h1>
+  <div *ngFor="let imkomst of inkomsten">
+    <li class="saldo-item">
+      <div>
+        {{ imkomst.tag }}
+        {{ imkomst.categorie }}
+        {{ imkomst.bedrag }}
+      </div>
+    </li>
+  </div>
+</div>

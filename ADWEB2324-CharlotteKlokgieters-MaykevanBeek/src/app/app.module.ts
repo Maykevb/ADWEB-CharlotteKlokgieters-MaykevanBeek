@@ -11,6 +11,7 @@ import { SaldoCreeerComponent } from './saldo-creeer/saldo-creeer.component';
 import { CategorieCreeerComponent } from './categorie-creeer/categorie-creeer.component';
 import {HuishoudboekjeDetailsComponent} from "./huishoudboekje-details/huishoudboekje-details.component";
 import { CategorieLijstComponent } from './categorie-lijst/categorie-lijst.component';
+import { SaldoLijstComponent } from './saldo-lijst/saldo-lijst.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { CategorieLijstComponent } from './categorie-lijst/categorie-lijst.compo
     SaldoCreeerComponent,
     CategorieCreeerComponent,
     CategorieLijstComponent,
+    SaldoLijstComponent,
   ],
   imports: [
     BrowserModule,
