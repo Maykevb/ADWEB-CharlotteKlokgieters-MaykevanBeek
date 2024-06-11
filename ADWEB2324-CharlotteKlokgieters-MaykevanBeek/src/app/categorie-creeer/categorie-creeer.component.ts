@@ -16,9 +16,6 @@ export class CategorieCreeerComponent {
     if (this.categorie.eindDatum === undefined) {
       this.categorie.eindDatum = null;
     }
-    else {
-      console.log(this.categorie.eindDatum)
-    }
     if (this.categorie.naam !== "" && this.categorie.budget != 0 && this.categorie.budget != null) {
       this.service.addCategorie(this.categorie);
       this.categorie = new Categorie("", "");
