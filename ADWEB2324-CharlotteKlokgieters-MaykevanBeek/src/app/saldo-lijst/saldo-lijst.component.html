@@ -1,12 +1,40 @@
 <div class="saldo-list">
   <h1>Saldo</h1>
-  <div *ngFor="let imkomst of inkomsten">
-    <li class="saldo-item">
-      <div>
-        {{ imkomst.tag }}
-        {{ imkomst.categorie }}
-        {{ imkomst.bedrag }}
+
+  <div class="container">
+    <div class="saldo-item">
+      <h2>Inkomsten</h2>
+      <div *ngFor="let imkomst of inkomsten">
+        <div class="list-item">
+          <span *ngIf="imkomst.tag">
+            <b>Tag:</b> {{ imkomst.tag }}
+          </span>
+          <span *ngIf="imkomst.categorie">
+            <b>Categorie:</b> {{ imkomst.categorie }}
+          </span>
+          <span *ngIf="imkomst.bedrag">
+            <b>Bedrag:</b> {{ imkomst.bedrag }}
+          </span>
+        </div>
       </div>
-    </li>
+    </div>
+
+    <div class="saldo-item">
+      <h2>Uitgaven</h2>
+
+      <div *ngFor="let uitgave of uitgaven">
+        <div class="list-item">
+          <span *ngIf="uitgave.tag">
+            <b>Tag:</b> {{ uitgave.tag }}
+          </span>
+          <span *ngIf="uitgave.categorie">
+            <b>Categorie:</b> {{ uitgave.categorie }}
+          </span>
+          <span *ngIf="uitgave.bedrag">
+            <b>Bedrag:</b> {{ uitgave.bedrag }}
+          </span>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

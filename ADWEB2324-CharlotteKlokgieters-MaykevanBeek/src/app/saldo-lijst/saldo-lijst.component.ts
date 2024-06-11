@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import {Categorie} from "../models/categorie.model";
-import {CategorieService} from "../categorie.service";
 import {Saldo} from "../models/saldo.model";
 import {SaldoService} from "../saldo.service";
 

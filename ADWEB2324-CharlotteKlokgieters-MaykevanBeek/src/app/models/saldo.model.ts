@@ -10,7 +10,7 @@ export class Saldo {
     this.id = id;
     this.tag = tag;
     // @ts-ignore
-    this.bedrag = undefined;
+    this.bedrag = null;
     this.categorie = null;
   }
 }

@@ -7,13 +7,35 @@
   border-radius: 12px;
   border: 2px solid #ff99aa;
   margin-bottom: 20px;
-  font-size: 24px;
-  font-weight: bold;
+  font-size: 20px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
   min-width: 500px;
 }
 
-div {
+.saldo-item {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px;
+  color: #ff6688;
+  border-radius: 12px;
+  border: 2px solid #ff99aa;
+  width: 50%;
+  background-color: #fff2f4;
+}
+
+.list-item {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px;
+  color: #ff6688;
+  border-radius: 12px;
+  border: 2px solid #ff99aa;
+  background-color: #ffe5e9;
+}
+
+.container {
   display: flex;
   flex-direction: row;
   gap: 10px;
@@ -21,6 +43,14 @@ div {
 
 h1 {
   font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+h2 {
+  font-size: 20px;
   font-weight: bold;
   color: #333;
   text-align: center;

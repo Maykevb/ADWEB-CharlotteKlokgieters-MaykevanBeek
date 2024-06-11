@@ -40,6 +40,7 @@ export class SaldoService {
         let saldo = snapshot.docs.map((doc: any) => {
           let individualSaldo = doc.data();
           individualSaldo['id'] = doc.id;
+          individualSaldo.bedrag = parseFloat(individualSaldo.bedrag).toFixed(2);
           return individualSaldo;
         });
 
@@ -56,6 +57,7 @@ export class SaldoService {
         let saldo = snapshot.docs.map((doc: any) => {
           let individualSaldo = doc.data();
           individualSaldo['id'] = doc.id;
+          individualSaldo.bedrag = parseFloat(individualSaldo.bedrag).toFixed(2);
           return individualSaldo;
         });
 
