@@ -1,9 +1,16 @@
 <div class="categorie-list">
   <h1>Categorieën</h1>
+  <h2>
+    <div>Naam</div>
+    <div class="budget-title">Budget</div>
+    <div class="end-title">Eind datum</div>
+  </h2>
   <div *ngFor="let categorie of categorieen" class="categorie-item">
     <div *ngIf="!categorie.editMode" class="mode">
       <ul>
         <div>{{ categorie.naam }}</div>
+        <div>€{{ categorie.budget }}</div>
+        <div>{{ categorie.eindDatum }}</div>
       </ul>
       <div class="button-container">
         <button (click)="toggleEdit(categorie)">✎</button>
@@ -12,10 +19,12 @@
     </div>
     <div *ngIf="categorie.editMode" class="mode">
       <ul>
-        <input id="naam-{{categorie.id}}" [(ngModel)]="categorie.naam" placeholder="Naam" class="edit-input">
+        <input id="naam-{{categorie.id}}" [(ngModel)]="categorie.naam" placeholder="naam" class="edit-input">
+        <input id="budget-{{categorie.id}}" [(ngModel)]="categorie.budget" placeholder="budget" type="number" class="edit-input">
+        <input id="eind_datum-{{categorie.id}}" [(ngModel)]="categorie.eindDatum" placeholder="eind datum" type="date" class="edit-input">
       </ul>
-      <div class="button-container">
-        <button (click)="onSave(categorie)">💾</button>
+      <div class="button-container" id="edit-buttons">
+        <button (click)="onSave(categorie)">🖫</button>
         <button (click)="toggleEdit(categorie)">🗙</button>
       </div>
     </div>

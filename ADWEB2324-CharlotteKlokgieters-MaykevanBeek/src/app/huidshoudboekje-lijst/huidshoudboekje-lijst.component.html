@@ -39,14 +39,13 @@
   </div>
 </ul>
 
-
   <ul *ngIf="activeTab === 'archived'">
     <div *ngFor="let huishoudboekje of huishoudboekjes | huishoudboekjeZoek:query">
       <li *ngIf="huishoudboekje.gearchiveerd" class="huishoudboekje-item">
-        <a routerLink="../huishoudboekje/{{huishoudboekje.id}}">
+        <div>
           <h1>- {{ huishoudboekje.naam }} -</h1>
           <div>{{huishoudboekje.omschrijving}}</div>
-        </a>
+        </div>
         <div>
           <button (click)="onArchive(huishoudboekje, false)">Dearchiveer</button>
         </div>

@@ -2,6 +2,8 @@
   <h1>Voeg nieuwe categorie toe</h1>
   <div>
     <input [(ngModel)]="categorie.naam" placeholder="naam">
+    <input [(ngModel)]="categorie.budget" placeholder="budget" type="number">
+    <input [(ngModel)]="categorie.eindDatum" placeholder="eind datum" type="date">
     <button (click)="onAdd()">+</button>
   </div>
 </div>

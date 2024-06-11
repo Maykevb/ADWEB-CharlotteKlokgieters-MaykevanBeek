@@ -10,14 +10,19 @@ import {CategorieService} from "../categorie.service";
 export class CategorieCreeerComponent {
   categorie: Categorie = new Categorie("", "");
 
-  constructor(private service: CategorieService) {
-
-  }
+  constructor(private service: CategorieService) { }
 
   onAdd() {
-    if (this.categorie.naam != "") {
+    if (this.categorie.eindDatum === undefined) {
+      this.categorie.eindDatum = null;
+    }
+    else {
+      console.log(this.categorie.eindDatum)
+    }
+    if (this.categorie.naam !== "" && this.categorie.budget != 0 && this.categorie.budget != null) {
       this.service.addCategorie(this.categorie);
       this.categorie = new Categorie("", "");
     }
   }
+
 }
