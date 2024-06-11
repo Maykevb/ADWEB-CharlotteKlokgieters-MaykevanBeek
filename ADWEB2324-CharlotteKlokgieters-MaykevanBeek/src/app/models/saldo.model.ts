@@ -5,6 +5,7 @@ export class Saldo {
   tag: string;
   categorie: Categorie | null;
   bedrag: number;
+  datum: Date | null;
 
   constructor(id: string, tag: string) {
     this.id = id;
@@ -12,6 +13,7 @@ export class Saldo {
     // @ts-ignore
     this.bedrag = null;
     this.categorie = null;
+    this.datum = null;
   }
 }
 

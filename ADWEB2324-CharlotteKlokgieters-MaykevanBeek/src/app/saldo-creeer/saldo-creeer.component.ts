@@ -18,6 +18,7 @@ export class SaldoCreeerComponent {
 
   onAdd() {
     if (this.saldo.bedrag != 0) {
+      this.saldo.datum = new Date();
       this.service.addSaldo(this.saldo);
       this.saldo = new Saldo("", "");
     }
