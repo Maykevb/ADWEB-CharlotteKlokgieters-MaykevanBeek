@@ -111,21 +111,20 @@ export class SaldoService {
     const { id, ...object } = Object.assign({}, saldo);
     updateDoc(doc(this.firestore, "Saldo", saldo.id), object);
 
-    if (saldo.categorie) {
+    if ((saldo.categorie && !oldCategorie) || (oldCategorie && saldo.categorie && saldo.categorie.id != oldCategorie.id)) {
       const categorieNew = await this.categorieService.getCategorieOfSaldo(saldo.categorie.id);
       if (categorieNew != undefined) {
         const newBudget = parseFloat(categorieNew.huidigBudget.toString()) + parseFloat(saldo.bedrag.toString());
         categorieNew.huidigBudget = newBudget;
         this.categorieService.updateCategorie(categorieNew);
       }
-
-      if (oldCategorie && saldo.categorie.id != oldCategorie.id) {
-        const categorieOld = await this.categorieService.getCategorieOfSaldo(oldCategorie.id);
-        if (categorieOld != undefined) {
-          const newBudget = parseFloat(categorieOld.huidigBudget.toString()) - parseFloat(saldo.bedrag.toString());
-          categorieOld.huidigBudget = newBudget;
-          this.categorieService.updateCategorie(categorieOld);
-        }
+    }
+    if (oldCategorie && saldo.categorie && saldo.categorie.id != oldCategorie.id) {
+      const categorieOld = await this.categorieService.getCategorieOfSaldo(oldCategorie.id);
+      if (categorieOld != undefined) {
+        const newBudget = parseFloat(categorieOld.huidigBudget.toString()) - parseFloat(saldo.bedrag.toString());
+        categorieOld.huidigBudget = newBudget;
+        this.categorieService.updateCategorie(categorieOld);
       }
     }
   }
