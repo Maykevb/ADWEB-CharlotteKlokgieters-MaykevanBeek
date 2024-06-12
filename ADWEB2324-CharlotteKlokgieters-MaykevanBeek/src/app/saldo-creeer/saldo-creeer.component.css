@@ -44,6 +44,15 @@ button {
   margin-top: 2px;
 }
 
+.error {
+  color: #ff6688;
+  border: #ff99aa 2px solid;
+  background-color: #fff2f4;
+  padding: 10px 50px;
+  border-radius: 12px;
+  margin: auto;
+}
+
 button:hover {
   background-color: #ff6688;
   transform: scale(1.05);

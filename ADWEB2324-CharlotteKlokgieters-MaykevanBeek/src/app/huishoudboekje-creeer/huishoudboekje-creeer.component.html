@@ -5,4 +5,6 @@
     <input [(ngModel)]="huishoudboekje.omschrijving" placeholder="omschrijving">
     <button (click)="onAdd()">+</button>
   </div>
+
+  <div *ngIf="submitted && !huishoudboekje.naam" class="error">!! Naam is verplicht !!</div>
 </div>

@@ -11,6 +11,7 @@ import {SaldoService} from "../saldo.service";
 export class CategorieLijstComponent {
   categorieen: Categorie[] = [];
   saldoService: SaldoService;
+  submitted = false;
 
   constructor(private service: CategorieService, saldoService: SaldoService) {
     service.getCategorieen().subscribe(categorieen => {
@@ -25,8 +26,15 @@ export class CategorieLijstComponent {
   }
 
   onSave(categorie: Categorie) {
-    categorie.editMode = false;
-    this.service.updateCategorie(categorie);
+    this.submitted = true;
+    if (categorie.eindDatum === undefined) {
+      categorie.eindDatum = null;
+    }
+    if (categorie.naam !== "" && categorie.budget != 0 && categorie.budget != null) {
+      categorie.editMode = false;
+      this.service.updateCategorie(categorie);
+      this.submitted = false;
+    }
   }
 
   onDelete(categorie: Categorie) {

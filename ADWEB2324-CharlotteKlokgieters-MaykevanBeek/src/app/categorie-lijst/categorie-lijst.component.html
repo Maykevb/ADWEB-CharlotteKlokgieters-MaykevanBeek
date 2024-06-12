@@ -32,8 +32,9 @@
       </ul>
       <div class="button-container" id="edit-buttons">
         <button (click)="onSave(categorie)">🖫</button>
-        <button (click)="toggleEdit(categorie)">🗙</button>
       </div>
     </div>
+
+    <span *ngIf="submitted && !categorie.naam || submitted && !categorie.budget" class="error">!! Naam en budget is verplicht !!</span>
   </div>
 </div>

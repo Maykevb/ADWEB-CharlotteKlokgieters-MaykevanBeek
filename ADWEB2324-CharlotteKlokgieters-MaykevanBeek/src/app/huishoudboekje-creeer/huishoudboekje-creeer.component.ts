@@ -9,14 +9,18 @@ import {HuishoudboekjeService} from "../huishoudboekje.service";
 })
 export class HuishoudboekjeCreeerComponent {
   huishoudboekje: Huishoudboekje = new Huishoudboekje("", "", "");
+  submitted = false;
 
   constructor(private service: HuishoudboekjeService) {
   }
 
   onAdd() {
+    this.submitted = true;
+
     if (this.huishoudboekje.naam != "") {
       this.service.addHuishoudboekje(this.huishoudboekje);
       this.huishoudboekje = new Huishoudboekje("", "", "");
+      this.submitted = false
     }
   }
 }

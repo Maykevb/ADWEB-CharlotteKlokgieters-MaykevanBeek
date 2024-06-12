@@ -40,6 +40,16 @@ button {
   font-weight: bolder;
 }
 
+.error {
+  color: #ff6688;
+  border: #ff99aa 2px solid;
+  background-color: #fff2f4;
+  padding: 10px 50px;
+  border-radius: 12px;
+  margin: auto;
+}
+
+
 .totals {
   margin-top: 0;
   margin-bottom: 10px;

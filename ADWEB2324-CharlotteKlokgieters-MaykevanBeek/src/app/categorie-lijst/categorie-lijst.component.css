@@ -22,6 +22,15 @@
   margin: 0;
 }
 
+.error {
+  color: #ff6688;
+  border: #ff99aa 2px solid;
+  background-color: #fff2f4;
+  padding: 10px;
+  border-radius: 12px;
+  margin: auto 20px auto auto;
+}
+
 .mode {
   display: flex;
   flex-direction: row;

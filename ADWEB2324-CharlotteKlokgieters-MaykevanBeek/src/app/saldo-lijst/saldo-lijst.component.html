@@ -52,9 +52,9 @@
               {{ inkomst.datum | date:'dd-MM-yyyy' }}
             </span>
           </div>
+          <div *ngIf="submitted && !inkomst.bedrag" class="error">!! Bedrag is verplicht !!</div>
           <div class="button-container">
             <button (click)="onSave(inkomst)">🖫</button>
-            <button (click)="toggleEdit(inkomst)">🗙</button>
           </div>
         </div>
       </div>
@@ -103,9 +103,9 @@
               {{ uitgave.datum | date:'dd-MM-yyyy' }}
             </span>
           </div>
+          <div *ngIf="submitted && !uitgave.bedrag" class="error">!! Bedrag is verplicht !!</div>
           <div class="button-container">
             <button (click)="onSave(uitgave)">🖫</button>
-            <button (click)="toggleEdit(uitgave)">🗙</button>
           </div>
         </div>
       </div>
