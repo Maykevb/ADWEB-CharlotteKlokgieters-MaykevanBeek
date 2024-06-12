@@ -32,7 +32,6 @@
           <input id="omschrijving-{{huishoudboekje.id}}" [(ngModel)]="huishoudboekje.omschrijving" placeholder="Omschrijving" class="edit-input">
           <div class="button-container">
             <button (click)="onSave(huishoudboekje)">Opslaan</button>
-            <button (click)="toggleEdit(huishoudboekje)">Annuleren</button>
           </div>
 
           <div *ngIf="submitted && !huishoudboekje.naam" class="error">!! Naam is verplicht !!</div>

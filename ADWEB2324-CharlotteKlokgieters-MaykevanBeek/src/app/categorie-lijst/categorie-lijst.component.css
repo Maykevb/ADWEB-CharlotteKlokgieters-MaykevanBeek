@@ -26,9 +26,9 @@
   color: #ff6688;
   border: #ff99aa 2px solid;
   background-color: #fff2f4;
-  padding: 10px 50px;
+  padding: 10px;
   border-radius: 12px;
-  margin: auto;
+  margin: auto 20px auto auto;
 }
 
 .mode {
