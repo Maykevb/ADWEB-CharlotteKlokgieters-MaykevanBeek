@@ -5,12 +5,15 @@ import { initializeApp } from "firebase/app";
 import { Firestore, getFirestore, onSnapshot, collection, doc, addDoc, deleteDoc, updateDoc } from "firebase/firestore";
 import {Saldo} from "./models/saldo.model";
 import {Categorie} from "./models/categorie.model";
+import { CategorieService } from "./categorie.service";
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class SaldoService {
   firestore: Firestore;
+  categorieService: CategorieService;
 
   constructor() {
     // Firebase configuration
@@ -27,6 +30,8 @@ export class SaldoService {
     const app = initializeApp(firebaseConfig);
 
     this.firestore = getFirestore(app);
+
+    this.categorieService = new CategorieService();
   }
 
   addSaldo(saldo: Saldo) {
@@ -34,6 +39,19 @@ export class SaldoService {
     const currentDate = new Date().toISOString().split('T')[0];
     object.datum = currentDate;
     addDoc(collection(this.firestore, 'Saldo'), object);
+  }
+
+  updateCategorieOfSaldo(saldo: Saldo) {
+    const { id, ...object } = Object.assign({}, saldo);
+    updateDoc(doc(this.firestore, "Saldo", saldo.id), object);
+
+    if (saldo.categorie) {
+      let categorie = this.categorieService.getCategorie(saldo.categorie.id);
+      // @ts-ignore
+      let newCategorie = new Categorie(categorie.id, categorie.naam, categorie.eindDatum);
+      newCategorie.huidigBudget += saldo.bedrag
+      this.categorieService.updateCategorie(newCategorie)
+    }
   }
 
   getInkomsten() {

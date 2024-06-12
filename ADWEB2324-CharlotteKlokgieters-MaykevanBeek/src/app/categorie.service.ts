@@ -58,6 +58,8 @@ export class CategorieService {
   }
 
   addCategorie(categorie: Categorie) {
+    // @ts-ignore
+    categorie.huidigBudget = categorie.budget
     const { id, ...object } = Object.assign({}, categorie);
     addDoc(collection(this.firestore, 'Categorieen'), object);
   }
