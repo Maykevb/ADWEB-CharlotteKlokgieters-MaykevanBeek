@@ -5,7 +5,8 @@
     <div class="budget-title">Budget</div>
     <div class="end-title">Eind datum</div>
   </h2>
-  <div *ngFor="let categorie of categorieen" class="categorie-item">
+  <div *ngFor="let categorie of categorieen" class="categorie-item" droppable="true" (dragover)="dragOver($event)"
+       (dragenter)="dragEnter($event)" (drop)="drop($event, categorie)">
     <div *ngIf="!categorie.editMode" class="mode">
       <ul>
         <div>{{ categorie.naam }}</div>

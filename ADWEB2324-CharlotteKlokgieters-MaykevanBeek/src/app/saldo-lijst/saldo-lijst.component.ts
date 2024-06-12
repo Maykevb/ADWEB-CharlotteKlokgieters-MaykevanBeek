@@ -116,4 +116,8 @@ export class SaldoLijstComponent {
     const month = today.getMonth() + 1;
     return `${year}-${month < 10 ? '0' + month : month}`;
   }
+
+  dragStart(event: DragEvent, item: any) {
+    event.dataTransfer?.setData('text/plain', JSON.stringify(item));
+  }
 }

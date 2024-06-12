@@ -11,7 +11,8 @@
     <div class="saldo-item">
       <h2>Inkomsten</h2>
       <span class="totals">Totaal: €{{ totalInkomsten }}</span>
-      <div *ngFor="let inkomst of filterInkomsten">
+      <div *ngFor="let inkomst of filterInkomsten" draggable="true" (dragstart)="dragStart($event, inkomst)">
+
         <div class="list-item" *ngIf="!inkomst.editMode">
           <div>
             <b>Tag:</b>
@@ -20,7 +21,7 @@
             </span>
           </div>
           <span *ngIf="inkomst.categorie">
-             <b>Categorie:</b> {{ inkomst.categorie }}
+             <b>Categorie:</b> {{ inkomst.categorie.naam }}
           </span>
           <div>
             <b>Bedrag:</b>
@@ -36,7 +37,7 @@
           </div>
           <div class="button-container">
             <button (click)="toggleEdit(inkomst)">✎</button>
-            <button (click)="onDelete(inkomst)" id="delete">-</button>
+            <button (click)="onDelete(inkomst)" class="delete">-</button>
           </div>
         </div>
         <div class="list-item" *ngIf="inkomst.editMode">
@@ -62,7 +63,7 @@
     <div class="saldo-item">
       <h2>Uitgaven</h2>
       <span class="totals">Totaal: €{{ totalUitgaven }}</span>
-      <div *ngFor="let uitgave of filterUitgaven">
+      <div *ngFor="let uitgave of filterUitgaven" draggable="true" (dragstart)="dragStart($event, uitgave)">
         <div class="list-item" *ngIf="!uitgave.editMode">
           <div>
             <b>Tag:</b>
@@ -71,7 +72,7 @@
             </span>
           </div>
           <span *ngIf="uitgave.categorie">
-             <b>Categorie:</b> {{ uitgave.categorie }}
+             <b>Categorie:</b> {{ uitgave.categorie.naam }}
           </span>
           <div>
             <b>Bedrag:</b>

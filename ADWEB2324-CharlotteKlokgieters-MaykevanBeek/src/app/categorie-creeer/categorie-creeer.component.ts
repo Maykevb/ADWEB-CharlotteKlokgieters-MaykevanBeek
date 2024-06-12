@@ -27,5 +27,4 @@ export class CategorieCreeerComponent {
       this.submitted = false;
     }
   }
-
 }

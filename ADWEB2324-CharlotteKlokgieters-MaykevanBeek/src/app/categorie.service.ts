@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, Subscriber } from 'rxjs';
 
 import { initializeApp } from "firebase/app";
-import { Firestore, getFirestore, onSnapshot, collection, doc, addDoc, deleteDoc, updateDoc } from "firebase/firestore";
+import { Firestore, getFirestore, onSnapshot, collection, doc, addDoc, deleteDoc, updateDoc, getDoc } from "firebase/firestore";
 import {Categorie} from "./models/categorie.model";
 import {Saldo} from "./models/saldo.model";
 
@@ -61,8 +61,24 @@ export class CategorieService {
     })
   }
 
+  async getCategorieOfSaldo(id: string): Promise<Categorie | undefined> {
+    if (id == "") {
+      return undefined;
+    } else {
+      const snapshot = await getDoc(doc(this.firestore, "Categorieen", id));
+      if (snapshot.exists()) {
+        const categorie = snapshot.data() as Categorie;
+        categorie.id = snapshot.id;
+        return categorie;
+      } else {
+        return undefined;
+      }
+    }
+  }
+
   addCategorie(categorie: Categorie) {
     // @ts-ignore
+    categorie.budget = parseFloat(categorie.budget)
     categorie.huidigBudget = categorie.budget
     const { id, ...object } = Object.assign({}, categorie);
     addDoc(collection(this.firestore, 'Categorieen'), object);
