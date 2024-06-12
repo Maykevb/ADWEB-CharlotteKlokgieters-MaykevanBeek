@@ -105,3 +105,15 @@ h2 {
 .end-title {
   margin-left: 20px;
 }
+
+#green {
+  color: forestgreen;
+}
+
+#orange {
+  color: coral;
+}
+
+#red {
+  color: firebrick;
+}

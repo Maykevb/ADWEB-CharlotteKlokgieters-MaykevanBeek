@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import {Categorie} from "../models/categorie.model";
 import {CategorieService} from "../categorie.service";
-import {Huishoudboekje} from "../models/huishoudboekje.model";
 
 @Component({
   selector: 'app-categorie-lijst',

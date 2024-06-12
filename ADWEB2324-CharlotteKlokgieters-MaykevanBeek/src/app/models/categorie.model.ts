@@ -2,6 +2,7 @@ export class Categorie {
   id: string;
   naam: string;
   budget?: number;
+  huidigBudget: number;
   eindDatum?: Date | null;
   editMode?: boolean;
 
@@ -10,6 +11,7 @@ export class Categorie {
     this.naam = naam;
     // @ts-ignore
     this.budget = null;
+    this.huidigBudget = 0;
     this.eindDatum = eindDatum;
     this.editMode = false;
   }

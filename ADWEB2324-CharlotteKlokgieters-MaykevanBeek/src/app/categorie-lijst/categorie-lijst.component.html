@@ -9,7 +9,13 @@
     <div *ngIf="!categorie.editMode" class="mode">
       <ul>
         <div>{{ categorie.naam }}</div>
-        <div>€{{ categorie.budget }}</div>
+        <div *ngIf="categorie.budget != null && (categorie.huidigBudget > (categorie.budget / 2))"
+             id="green">€{{ categorie.huidigBudget }} / €{{ categorie.budget }}</div>
+        <div *ngIf="categorie.budget != null && (categorie.huidigBudget <= (categorie.budget / 2)) &&
+             (categorie.huidigBudget > 1)"
+             id="orange">€{{ categorie.huidigBudget }} / €{{ categorie.budget }}</div>
+        <div *ngIf="categorie.budget != null && (categorie.huidigBudget <= 0)"
+             id="red">€{{ categorie.huidigBudget }} / €{{ categorie.budget }}</div>
         <div>{{ categorie.eindDatum }}</div>
       </ul>
       <div class="button-container">
