@@ -1,17 +1,16 @@
 export class Categorie {
   id: string;
   naam: string;
-  budget?: number;
+  budget?: number | null;
   huidigBudget: number;
   eindDatum?: Date | null;
   editMode?: boolean;
 
-  constructor(id: string, naam: string, eindDatum?: Date) {
+  constructor(id: string, naam: string, budget?: number, eindDatum?: Date) {
     this.id = id;
     this.naam = naam;
-    // @ts-ignore
-    this.budget = null;
-    this.huidigBudget = 0;
+    this.budget = budget;
+    this.huidigBudget = 0.00;
     this.eindDatum = eindDatum;
     this.editMode = false;
   }

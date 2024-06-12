@@ -21,5 +21,4 @@ export class CategorieCreeerComponent {
       this.categorie = new Categorie("", "");
     }
   }
-
 }
