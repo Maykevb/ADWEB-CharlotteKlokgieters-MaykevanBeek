@@ -14,20 +14,62 @@ export class SaldoLijstComponent {
   uitgaven: Saldo[] = [];
   filterUitgaven: Saldo[] = [];
   selectedMonth: string;
+  totalInkomsten: number;
+  totalUitgaven: number;
+  totalSaldo: number;
 
   constructor(private service: SaldoService) {
     this.selectedMonth = this.getDefaultMonth();
     this.filterByMonth();
+    this.totalUitgaven = 0;
+    this.totalInkomsten = 0;
+    this.totalSaldo = 0;
 
     this.service.getInkomsten().subscribe(saldo => {
       this.inkomsten = saldo;
       this.filterByMonth();
+      this.getTotals();
+      this.getTotalSaldo();
     });
 
     this.service.getUitgaven().subscribe(saldo => {
       this.uitgaven = saldo;
       this.filterByMonth();
+      this.getTotals()
+      this.getTotalSaldo();
     });
+  }
+
+  getTotals() {
+    let total = 0;
+
+    for (const inkomst of this.filterInkomsten) {
+      total += parseFloat(String(inkomst.bedrag));
+    }
+
+    this.totalInkomsten = total;
+
+    total = 0;
+
+    for (const uitgave of this.filterUitgaven) {
+      total +=  parseFloat(String(uitgave.bedrag));
+    }
+
+    this.totalUitgaven = total
+  }
+
+  getTotalSaldo() {
+    let total = 0;
+
+    for (const inkomst of this.filterInkomsten) {
+      total += parseFloat(String(inkomst.bedrag));
+    }
+
+    for (const uitgave of this.filterUitgaven) {
+      total +=  parseFloat(String(uitgave.bedrag));
+    }
+
+    this.totalSaldo = total;
   }
 
   toggleEdit(saldo: Saldo) {

@@ -1,5 +1,6 @@
 <div class="saldo-list">
   <h1>Saldo</h1>
+  <span class="totals">Totaal: €{{ totalSaldo }}</span>
 
   <div class="month-picker">
     <label for="month">Select month:</label>
@@ -9,6 +10,7 @@
   <div class="container">
     <div class="saldo-item">
       <h2>Inkomsten</h2>
+      <span class="totals">Totaal: €{{ totalInkomsten }}</span>
       <div *ngFor="let inkomst of filterInkomsten">
         <div class="list-item" *ngIf="!inkomst.editMode">
           <div>
@@ -23,7 +25,7 @@
           <div>
             <b>Bedrag:</b>
             <span *ngIf="inkomst.bedrag">
-               {{ inkomst.bedrag }}
+               €{{ inkomst.bedrag }}
             </span>
           </div>
           <div>
@@ -59,6 +61,7 @@
 
     <div class="saldo-item">
       <h2>Uitgaven</h2>
+      <span class="totals">Totaal: €{{ totalUitgaven }}</span>
       <div *ngFor="let uitgave of filterUitgaven">
         <div class="list-item" *ngIf="!uitgave.editMode">
           <div>
@@ -73,7 +76,7 @@
           <div>
             <b>Bedrag:</b>
             <span *ngIf="uitgave.bedrag">
-               {{ uitgave.bedrag }}
+               €{{ uitgave.bedrag }}
             </span>
           </div>
           <div>
