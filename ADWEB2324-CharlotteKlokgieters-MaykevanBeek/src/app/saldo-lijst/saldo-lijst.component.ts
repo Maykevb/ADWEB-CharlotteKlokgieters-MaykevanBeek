@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Saldo } from "../models/saldo.model";
 import { SaldoService } from "../saldo.service";
+import {Categorie} from "../models/categorie.model";
 
 @Component({
   selector: 'app-saldo-lijst',
@@ -27,6 +28,19 @@ export class SaldoLijstComponent {
       this.uitgaven = saldo;
       this.filterByMonth();
     });
+  }
+
+  toggleEdit(saldo: Saldo) {
+    saldo.editMode = !saldo.editMode;
+  }
+
+  onSave(saldo: Saldo) {
+    saldo.editMode = false;
+    this.service.updateSaldo(saldo);
+  }
+
+  onDelete(saldo: Saldo) {
+    this.service.deleteSaldo(saldo);
   }
 
   filterByMonth() {

@@ -6,6 +6,7 @@ export class Saldo {
   categorie: Categorie | null;
   bedrag: number;
   datum: string;
+  editMode: boolean;
 
   constructor(id: string, tag: string) {
     this.id = id;
@@ -14,6 +15,7 @@ export class Saldo {
     this.bedrag = null;
     this.categorie = null;
     this.datum = "";
+    this.editMode = false;
   }
 }
 

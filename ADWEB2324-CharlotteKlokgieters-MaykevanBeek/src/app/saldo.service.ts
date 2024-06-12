@@ -4,6 +4,7 @@ import { Observable, Subscriber } from 'rxjs';
 import { initializeApp } from "firebase/app";
 import { Firestore, getFirestore, onSnapshot, collection, doc, addDoc, deleteDoc, updateDoc } from "firebase/firestore";
 import {Saldo} from "./models/saldo.model";
+import {Categorie} from "./models/categorie.model";
 
 @Injectable({
   providedIn: 'root'
@@ -46,7 +47,9 @@ export class SaldoService {
         });
 
         let positiveSaldo = saldo.filter((s: Saldo) => s.bedrag > 0);
-        positiveSaldo.sort((a: Saldo, b: Saldo) => { return b.datum.localeCompare(a.datum); });
+        positiveSaldo.sort((a: Saldo, b: Saldo) => {
+          return new Date(b.datum).getTime() - new Date(a.datum).getTime();
+        });
 
         subscriber.next(positiveSaldo);
       });
@@ -65,11 +68,24 @@ export class SaldoService {
         });
 
         let negativeSaldo = saldo.filter((s: Saldo) => s.bedrag < 0);
-        negativeSaldo.sort((a: Saldo, b: Saldo) => { return b.datum.localeCompare(a.datum); });
+        negativeSaldo.sort((a: Saldo, b: Saldo) => {
+          return new Date(b.datum).getTime() - new Date(a.datum).getTime();
+        });
 
         subscriber.next(negativeSaldo);
       });
     });
+  }
+
+  updateSaldo(saldo: Saldo) {
+    const { id, ...object } = Object.assign({}, saldo);
+    const currentDate = new Date().toISOString().split('T')[0];
+    object.datum = currentDate;
+    updateDoc(doc(this.firestore, "Saldo", saldo.id), object);
+  }
+
+  deleteSaldo(saldo: Saldo) {
+    deleteDoc(doc(this.firestore, "Saldo", saldo.id));
   }
 }
 
