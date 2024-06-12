@@ -9,16 +9,19 @@ import {CategorieService} from "../categorie.service";
 })
 export class CategorieCreeerComponent {
   categorie: Categorie = new Categorie("", "");
+  submitted = false;
 
   constructor(private service: CategorieService) { }
 
   onAdd() {
+    this.submitted = true;
     if (this.categorie.eindDatum === undefined) {
       this.categorie.eindDatum = null;
     }
     if (this.categorie.naam !== "" && this.categorie.budget != 0 && this.categorie.budget != null) {
       this.service.addCategorie(this.categorie);
       this.categorie = new Categorie("", "");
+      this.submitted = false;
     }
   }
 

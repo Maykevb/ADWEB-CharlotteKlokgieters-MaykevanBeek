@@ -11,6 +11,7 @@ export class HuidshoudboekjeLijstComponent {
   query: string = ""
   activeTab: string = 'active';
   huishoudboekjes: Huishoudboekje[] = [];
+  submitted = false;
 
   setActiveTab(tab: string) {
     this.activeTab = tab;
@@ -27,8 +28,12 @@ export class HuidshoudboekjeLijstComponent {
   }
 
   onSave(huishoudboekje: Huishoudboekje) {
-    huishoudboekje.editMode = false;
-    this.service.updateHuishoudboekje(huishoudboekje);
+    this.submitted = true;
+    if (huishoudboekje.naam != "") {
+      huishoudboekje.editMode = false;
+      this.service.updateHuishoudboekje(huishoudboekje);
+      this.submitted = false
+    }
   }
 
   onArchive(huishoudboekje: Huishoudboekje, archive: boolean) {

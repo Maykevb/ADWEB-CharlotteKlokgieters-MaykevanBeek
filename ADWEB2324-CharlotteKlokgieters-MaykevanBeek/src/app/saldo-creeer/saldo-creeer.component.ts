@@ -9,15 +9,18 @@ import {SaldoService} from "../saldo.service";
 })
 export class SaldoCreeerComponent {
   saldo: Saldo = new Saldo("", "");
+  submitted = false;
 
   @Input() huishoudboekje: string | null | undefined;
 
   constructor(private service: SaldoService) {}
 
   onAdd() {
-    if (this.saldo.bedrag != 0) {
+    this.submitted = true;
+    if (this.saldo.bedrag != null) {
       this.service.addSaldo(this.saldo);
       this.saldo = new Saldo("", "");
+      this.submitted = false;
     }
   }
 }

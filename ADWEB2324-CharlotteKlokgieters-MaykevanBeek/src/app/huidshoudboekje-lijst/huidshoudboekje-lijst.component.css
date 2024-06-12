@@ -62,6 +62,15 @@ li {
   align-items: flex-end;
 }
 
+.error {
+  color: #ff6688;
+  border: #ff99aa 2px solid;
+  background-color: #fff2f4;
+  padding: 10px 0;
+  border-radius: 12px;
+  margin-top: 20px;
+}
+
 .huishoudboekje-item {
   background-color: #ffe5e9;
   padding: 20px;

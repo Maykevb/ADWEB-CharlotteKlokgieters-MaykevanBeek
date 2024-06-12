@@ -17,6 +17,7 @@ export class SaldoLijstComponent {
   totalInkomsten: number;
   totalUitgaven: number;
   totalSaldo: number;
+  submitted = false;
 
   constructor(private service: SaldoService) {
     this.selectedMonth = this.getDefaultMonth();
@@ -77,8 +78,13 @@ export class SaldoLijstComponent {
   }
 
   onSave(saldo: Saldo) {
-    saldo.editMode = false;
-    this.service.updateSaldo(saldo);
+    this.submitted = true;
+
+    if (saldo.bedrag != null) {
+      saldo.editMode = false;
+      this.service.updateSaldo(saldo);
+      this.submitted = false;
+    }
   }
 
   onDelete(saldo: Saldo) {
