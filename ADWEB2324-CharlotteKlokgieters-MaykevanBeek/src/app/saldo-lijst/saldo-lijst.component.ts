@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
 import { Saldo } from "../models/saldo.model";
 import { SaldoService } from "../saldo.service";
 import {Categorie} from "../models/categorie.model";
@@ -19,21 +19,25 @@ export class SaldoLijstComponent {
   totalSaldo: number;
   submitted = false;
 
+  @Input() huishoudboekje: string | null | undefined;
+
   constructor(private service: SaldoService) {
     this.selectedMonth = this.getDefaultMonth();
     this.filterByMonth();
     this.totalUitgaven = 0;
     this.totalInkomsten = 0;
     this.totalSaldo = 0;
+  }
 
-    this.service.getInkomsten().subscribe(saldo => {
+  ngOnInit() {
+    this.service.getInkomsten(this.huishoudboekje).subscribe(saldo => {
       this.inkomsten = saldo;
       this.filterByMonth();
       this.getTotals();
       this.getTotalSaldo();
     });
 
-    this.service.getUitgaven().subscribe(saldo => {
+    this.service.getUitgaven(this.huishoudboekje).subscribe(saldo => {
       this.uitgaven = saldo;
       this.filterByMonth();
       this.getTotals()

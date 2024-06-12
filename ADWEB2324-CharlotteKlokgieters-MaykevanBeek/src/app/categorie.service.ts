@@ -4,6 +4,7 @@ import { Observable, Subscriber } from 'rxjs';
 import { initializeApp } from "firebase/app";
 import { Firestore, getFirestore, onSnapshot, collection, doc, addDoc, deleteDoc, updateDoc } from "firebase/firestore";
 import {Categorie} from "./models/categorie.model";
+import {Saldo} from "./models/saldo.model";
 
 @Injectable({
   providedIn: 'root'
@@ -28,7 +29,7 @@ export class CategorieService {
     this.firestore = getFirestore(app);
   }
 
-  getCategorieen(): Observable<Categorie[]> {
+  getCategorieen(huishoudboekje: string | null | undefined): Observable<Categorie[]> {
     return new Observable((subscriber: Subscriber<any[]>) => {
       onSnapshot(collection(this.firestore, 'Categorieen'), (snapshot) => {
         let categorieen = snapshot.docs.map((doc: any) => {
@@ -36,7 +37,10 @@ export class CategorieService {
           categorie['id'] = doc.id;
           return categorie;
         });
-        subscriber.next(categorieen);
+
+        let filteredCategories = categorieen.filter((s: Categorie) => s.huishoudboekje === huishoudboekje);
+
+        subscriber.next(filteredCategories);
       });
     });
   }

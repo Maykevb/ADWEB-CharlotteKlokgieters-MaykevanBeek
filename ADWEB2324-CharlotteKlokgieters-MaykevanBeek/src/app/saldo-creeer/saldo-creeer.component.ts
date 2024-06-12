@@ -18,6 +18,7 @@ export class SaldoCreeerComponent {
   onAdd() {
     this.submitted = true;
     if (this.saldo.bedrag != null) {
+      this.saldo.huishoudboekje = this.huishoudboekje;
       this.service.addSaldo(this.saldo);
       this.saldo = new Saldo("", "");
       this.submitted = false;

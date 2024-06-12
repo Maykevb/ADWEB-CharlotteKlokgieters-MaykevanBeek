@@ -7,6 +7,7 @@ export class Saldo {
   bedrag: number;
   datum: string;
   editMode: boolean;
+  huishoudboekje: string | null | undefined;
 
   constructor(id: string, tag: string) {
     this.id = id;
@@ -16,6 +17,7 @@ export class Saldo {
     this.categorie = null;
     this.datum = "";
     this.editMode = false;
+    this.huishoudboekje = "";
   }
 }
 

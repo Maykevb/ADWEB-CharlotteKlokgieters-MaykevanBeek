@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {Categorie} from "../models/categorie.model";
 import {CategorieService} from "../categorie.service";
 
@@ -11,8 +11,12 @@ export class CategorieLijstComponent {
   categorieen: Categorie[] = [];
   submitted = false;
 
-  constructor(private service: CategorieService) {
-    service.getCategorieen().subscribe(categorieen => {
+  @Input() huishoudboekje: string | null | undefined;
+
+  constructor(private service: CategorieService) { }
+
+  ngOnInit() {
+    this.service.getCategorieen(this.huishoudboekje).subscribe(categorieen => {
       this.categorieen = categorieen;
     });
   }

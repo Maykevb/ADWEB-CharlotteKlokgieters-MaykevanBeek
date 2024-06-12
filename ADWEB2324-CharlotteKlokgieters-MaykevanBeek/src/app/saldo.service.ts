@@ -54,7 +54,7 @@ export class SaldoService {
     }
   }
 
-  getInkomsten() {
+  getInkomsten(huishoudboekje: string | null | undefined) {
     return new Observable((subscriber: Subscriber<Saldo[]>) => {
       onSnapshot(collection(this.firestore, 'Saldo'), (snapshot) => {
         let saldo = snapshot.docs.map((doc: any) => {
@@ -64,17 +64,20 @@ export class SaldoService {
           return individualSaldo;
         });
 
-        let positiveSaldo = saldo.filter((s: Saldo) => s.bedrag > 0);
+        let filteredSaldo = saldo.filter((s: Saldo) => s.huishoudboekje === huishoudboekje);
+        let positiveSaldo = filteredSaldo.filter((s: Saldo) => s.bedrag > 0);
         positiveSaldo.sort((a: Saldo, b: Saldo) => {
           return new Date(b.datum).getTime() - new Date(a.datum).getTime();
         });
+
+        console.log(positiveSaldo);
 
         subscriber.next(positiveSaldo);
       });
     });
   }
 
-  getUitgaven() {
+  getUitgaven(huishoudboekje: string | null | undefined) {
     return new Observable((subscriber: Subscriber<Saldo[]>) => {
       onSnapshot(collection(this.firestore, 'Saldo'), (snapshot) => {
         let saldo = snapshot.docs.map((doc: any) => {
@@ -85,7 +88,8 @@ export class SaldoService {
           return individualSaldo;
         });
 
-        let negativeSaldo = saldo.filter((s: Saldo) => s.bedrag < 0);
+        let filteredSaldo = saldo.filter((s: Saldo) => s.huishoudboekje === huishoudboekje);
+        let negativeSaldo = filteredSaldo.filter((s: Saldo) => s.bedrag < 0);
         negativeSaldo.sort((a: Saldo, b: Saldo) => {
           return new Date(b.datum).getTime() - new Date(a.datum).getTime();
         });
