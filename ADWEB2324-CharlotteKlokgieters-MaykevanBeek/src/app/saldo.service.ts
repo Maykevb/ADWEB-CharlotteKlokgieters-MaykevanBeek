@@ -41,7 +41,7 @@ export class SaldoService {
     addDoc(collection(this.firestore, 'Saldo'), object);
   }
 
-  getInkomsten() {
+  getInkomsten(huishoudboekje: string | null | undefined) {
     return new Observable((subscriber: Subscriber<Saldo[]>) => {
       onSnapshot(collection(this.firestore, 'Saldo'), (snapshot) => {
         let saldo = snapshot.docs.map((doc: any) => {
