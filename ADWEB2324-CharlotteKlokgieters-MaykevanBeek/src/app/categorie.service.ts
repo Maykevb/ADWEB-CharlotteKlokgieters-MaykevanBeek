@@ -39,22 +39,6 @@ export class CategorieService {
     });
   }
 
-  getCategorie(id: string): Observable<Categorie | undefined> {
-    return new Observable((subscriber: Subscriber<any>) => {
-      if (id == "") {
-        subscriber.next(null);
-      } else {
-        onSnapshot(doc(this.firestore, "Categorieen", id), (doc) => {
-          let categorie = doc.data() ?? null;
-          if (categorie) {
-            categorie['id'] = doc.id;
-          }
-          subscriber.next(categorie);
-        });
-      }
-    })
-  }
-
   async getCategorieOfSaldo(id: string): Promise<Categorie | undefined> {
     if (id == "") {
       return undefined;
@@ -77,6 +61,7 @@ export class CategorieService {
     const { id, ...object } = Object.assign({}, categorie);
     addDoc(collection(this.firestore, 'Categorieen'), object);
   }
+
 
   deleteCategorie(categorie: Categorie) {
     deleteDoc(doc(this.firestore, "Categorieen", categorie.id));

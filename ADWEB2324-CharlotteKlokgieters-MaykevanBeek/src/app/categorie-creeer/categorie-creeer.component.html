@@ -9,4 +9,5 @@
 
   <div *ngIf="submitted && !categorie.naam" class="error">!! Naam is verplicht !!</div>
   <div *ngIf="submitted && !categorie.budget" class="error">!! Budget is verplicht !!</div>
+  <div *ngIf="submitted && bestaatAl" class="error">!! Categorie bestaat al !!</div>
 </div>

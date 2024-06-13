@@ -15,12 +15,12 @@
 
 <div class="huishoudboekjes">
   <ul *ngIf="activeTab === 'active'" class="flex-container">
-    <div *ngFor="let huishoudboekje of huishoudboekjes | huishoudboekjeZoek:query">
+    <ng-container *ngFor="let huishoudboekje of huishoudboekjes | huishoudboekjeZoek:query">
       <li *ngIf="!huishoudboekje.gearchiveerd" class="huishoudboekje-item">
         <div *ngIf="!huishoudboekje.editMode">
           <a routerLink="../huishoudboekje/{{huishoudboekje.id}}">
-            <h1>- {{ huishoudboekje.naam }} -</h1>
-            <div>{{ huishoudboekje.omschrijving }}</div>
+            <h1>{{ huishoudboekje.naam }}</h1>
+            <div>{{ huishoudboekje.omschrijving ? huishoudboekje.omschrijving : '-' }}</div>
           </a>
           <div class="button-container">
             <button (click)="toggleEdit(huishoudboekje)">Aanpassen</button>
@@ -39,20 +39,20 @@
           <div *ngIf="submitted && !huishoudboekje.naam" class="error">!! Naam is verplicht !!</div>
         </div>
       </li>
-    </div>
+    </ng-container>
   </ul>
 
   <ul *ngIf="activeTab === 'archived'" class="flex-container">
-    <div *ngFor="let huishoudboekje of huishoudboekjes | huishoudboekjeZoek:query">
+    <ng-container *ngFor="let huishoudboekje of huishoudboekjes | huishoudboekjeZoek:query">
       <li *ngIf="huishoudboekje.gearchiveerd" class="huishoudboekje-item">
         <div>
-          <h1>- {{ huishoudboekje.naam }} -</h1>
-          <div>{{huishoudboekje.omschrijving}}</div>
+          <h1>{{ huishoudboekje.naam }}</h1>
+          <div>{{ huishoudboekje.omschrijving ? huishoudboekje.omschrijving : '-' }}</div>
         </div>
         <div>
           <button (click)="onArchive(huishoudboekje, false)">Dearchiveer</button>
         </div>
       </li>
-    </div>
+    </ng-container>
   </ul>
 </div>

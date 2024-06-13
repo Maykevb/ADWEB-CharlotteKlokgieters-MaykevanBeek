@@ -27,7 +27,7 @@ input {
   font-size: 24px;
   font-weight: bold;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
-  width: 30%;
+  width: 20%;
   height: fit-content;
 }
 
@@ -82,11 +82,11 @@ li {
   border-radius: 12px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
-  width: 20%;
   border: 2px solid #ff99aa;
   display: flex;
   flex-direction: column;
   align-items: center;
+  height: 80%;
 }
 
 .huishoudboekje-item h1 {
