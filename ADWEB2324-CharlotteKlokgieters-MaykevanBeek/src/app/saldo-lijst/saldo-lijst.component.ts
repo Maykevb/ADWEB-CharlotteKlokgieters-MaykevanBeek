@@ -223,10 +223,10 @@ export class SaldoLijstComponent implements OnInit {
 
   onDrag(event: DragEvent) {
     this.stopScrolling = true;
-    if (event.clientY < 150) {
+    if (event.clientY < 100) {
       this.stopScrolling = false;
       this.scroll(-1);
-    } else if (event.clientY > (window.innerHeight - 150)) {
+    } else if (event.clientY > (window.innerHeight - 100)) {
       this.stopScrolling = false;
       this.scroll(1);
     }
