@@ -1,0 +1,130 @@
+.saldo-list {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  background: #ffe5e9;
+  padding: 20px;
+  border-radius: 12px;
+  border: 2px solid #ff99aa;
+  margin-bottom: 20px;
+  font-size: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
+  min-width: 700px;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid #ff99aa;
+  border-radius: 8px;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+button {
+  background-color: #ff99aa;
+  border: none;
+  color: white;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 12px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  margin-right: 10px;
+}
+
+.delete {
+  font-weight: bolder;
+}
+
+.graph {
+  background-color: #fff2f4;
+  padding: 10px 50px;
+  border-radius: 12px;
+  border: #ff99aa 2px solid;
+  margin-bottom: 40px;
+  display: block;
+}
+
+.error {
+  color: #ff6688;
+  border: #ff99aa 2px solid;
+  background-color: #fff2f4;
+  padding: 10px 50px;
+  border-radius: 12px;
+  margin: auto;
+}
+
+
+.totals {
+  margin-top: 0;
+  margin-bottom: 10px;
+  color: #ff6688;
+}
+
+.month-picker {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  padding: 20px;
+  color: #ff6688;
+  border-radius: 12px;
+  border: 2px solid #ff99aa;
+  width: 60%;
+  background-color: #fff2f4;
+  justify-content: center;
+  align-items: center;
+  margin: auto auto 20px auto;
+}
+
+.month-picker input {
+  width: 50%;
+}
+
+.saldo-item {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px;
+  color: #ff6688;
+  border-radius: 12px;
+  border: 2px solid #ff99aa;
+  width: 50%;
+  background-color: #fff2f4;
+}
+
+.list-item {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px;
+  color: #ff6688;
+  border-radius: 12px;
+  border: 2px solid #ff99aa;
+  background-color: #ffe5e9;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+h1 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+h2 {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+  margin-bottom: 0;
+}

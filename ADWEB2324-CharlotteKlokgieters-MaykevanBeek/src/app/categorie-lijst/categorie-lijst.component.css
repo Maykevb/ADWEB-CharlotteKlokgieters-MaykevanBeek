@@ -1,0 +1,128 @@
+.categorie-list {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  background: #ffe5e9;
+  padding: 20px;
+  border-radius: 12px;
+  border: 2px solid #ff99aa;
+  margin-bottom: 20px;
+  font-size: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
+  min-width: 700px;
+  max-width: 700px;
+}
+
+.categorie-item {
+  color: #ff6688;
+  border: #ff99aa 2px solid;
+  background-color: #fff2f4;
+  padding-left: -15px;
+  border-radius: 12px;
+  margin: 0;
+}
+
+.error {
+  color: #ff6688;
+  border: #ff99aa 2px solid;
+  background-color: #fff2f4;
+  padding: 10px;
+  border-radius: 12px;
+  margin: auto 20px auto auto;
+}
+
+.mode {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+div {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+h1 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+button {
+  background-color: #ff99aa;
+  border: none;
+  color: white;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 12px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  margin-right: 10px;
+}
+
+#delete {
+  font-weight: bolder;
+}
+
+.button-container {
+  gap: 0;
+  margin-top: 18px;
+}
+
+#edit-buttons {
+  margin-top: 28px;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid #ff99aa;
+  border-radius: 8px;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+ul {
+  display: grid;
+  grid-template-columns: 3fr 1fr 1fr;
+  gap: 10px;
+  width: 100%;
+}
+
+h2 {
+  display: grid;
+  grid-template-columns: 3fr 1fr 2fr;
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+  margin-bottom: 10px;
+  margin-left: 45px;
+}
+
+.budget-title {
+  margin-left: 5px;
+}
+
+.end-title {
+  margin-left: 20px;
+}
+
+#green {
+  color: forestgreen;
+}
+
+#orange {
+  color: coral;
+}
+
+#red {
+  color: firebrick;
+}

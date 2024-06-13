@@ -1,0 +1,10 @@
+<div class="create-item">
+  <h1>Voeg nieuw saldo toe</h1>
+  <div>
+    <input [(ngModel)]="saldo.tag" placeholder="tag">
+    <input type="number" [(ngModel)]="saldo.bedrag" placeholder="bedrag">
+    <button (click)="onAdd()">+</button>
+  </div>
+
+  <div *ngIf="submitted && !saldo.bedrag" class="error">!! Bedrag is verplicht !!</div>
+</div>

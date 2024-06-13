@@ -4,6 +4,7 @@ import { Observable, Subscriber } from 'rxjs';
 import { initializeApp } from "firebase/app";
 import { Firestore, getFirestore, onSnapshot, collection, doc, addDoc, deleteDoc, updateDoc } from "firebase/firestore";
 import {Huishoudboekje} from "./models/huishoudboekje.model";
+import {Saldo} from "./models/saldo.model";
 
 @Injectable({
   providedIn: 'root'
@@ -62,11 +63,11 @@ export class HuishoudboekjeService {
     addDoc(collection(this.firestore, 'Huishoudboekjes'), object);
   }
 
-  deleteHuishoudboekje(huishoudboekje: Huishoudboekje) {
+/*  deleteHuishoudboekje(huishoudboekje: Huishoudboekje) {
     deleteDoc(doc(this.firestore, "Huishoudboekjes", huishoudboekje.id));
-  }
+  }*/
 
-  updateEvent(huishoudboekje: Huishoudboekje) {
+  updateHuishoudboekje(huishoudboekje: Huishoudboekje) {
     const { id, ...object } = Object.assign({}, huishoudboekje);
     updateDoc(doc(this.firestore, "Huishoudboekjes", huishoudboekje.id), object);
   }

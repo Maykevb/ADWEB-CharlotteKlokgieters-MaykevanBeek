@@ -1,0 +1,6 @@
+.new-flex {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  justify-content: space-evenly;
+}

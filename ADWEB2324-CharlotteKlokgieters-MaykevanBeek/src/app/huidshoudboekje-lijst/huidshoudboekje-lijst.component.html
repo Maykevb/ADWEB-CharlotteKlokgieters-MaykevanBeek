@@ -1,17 +1,56 @@
-<input [(ngModel)]="query" placeholder="zoek">
-<br>
-<br>
-<ul>
-  <div *ngFor="let huishoudboekje of huishoudboekjes | festivalSearch:query">
-    <li class="huishoudboekje-item">
-      <a routerLink="../huishoudboekje/{{huishoudboekje.id}}">
-        <h1>- {{ huishoudboekje.naam }} -</h1>
-        <div>{{huishoudboekje.omschrijving}}</div>
-        <div>
-          <button (click)="onDelete(huishoudboekje)">Archiveer</button>
-        </div>
-      </a>
-    </li>
+<div class="flex">
+  <app-huishoudboekje-creeer></app-huishoudboekje-creeer>
+
+  <div class="search">
+    <input class="input-search" [(ngModel)]="query" placeholder="zoek">
   </div>
-</ul>
-<!---->
+</div>
+
+<div class="tabs">
+  <button (click)="setActiveTab('active')">Huishoudboekjes</button>
+  <button (click)="setActiveTab('archived')">Gearchiveerd</button>
+</div>
+
+<div class="huishoudboekjes">
+  <ul *ngIf="activeTab === 'active'">
+    <div *ngFor="let huishoudboekje of huishoudboekjes | huishoudboekjeZoek:query">
+      <li *ngIf="!huishoudboekje.gearchiveerd" class="huishoudboekje-item">
+        <div *ngIf="!huishoudboekje.editMode">
+          <a routerLink="../huishoudboekje/{{huishoudboekje.id}}">
+            <h1>- {{ huishoudboekje.naam }} -</h1>
+            <div>{{ huishoudboekje.omschrijving }}</div>
+          </a>
+          <div class="button-container">
+            <button (click)="toggleEdit(huishoudboekje)">Aanpassen</button>
+            <button (click)="onArchive(huishoudboekje, true)">Archiveer</button>
+          </div>
+        </div>
+        <div *ngIf="huishoudboekje.editMode">
+          <label for="naam-{{huishoudboekje.id}}">Naam</label>
+          <input id="naam-{{huishoudboekje.id}}" [(ngModel)]="huishoudboekje.naam" placeholder="Naam" class="edit-input">
+          <label for="omschrijving-{{huishoudboekje.id}}">Omschrijving</label>
+          <input id="omschrijving-{{huishoudboekje.id}}" [(ngModel)]="huishoudboekje.omschrijving" placeholder="Omschrijving" class="edit-input">
+          <div class="button-container">
+            <button (click)="onSave(huishoudboekje)">Opslaan</button>
+          </div>
+
+          <div *ngIf="submitted && !huishoudboekje.naam" class="error">!! Naam is verplicht !!</div>
+        </div>
+      </li>
+    </div>
+  </ul>
+
+  <ul *ngIf="activeTab === 'archived'">
+    <div *ngFor="let huishoudboekje of huishoudboekjes | huishoudboekjeZoek:query">
+      <li *ngIf="huishoudboekje.gearchiveerd" class="huishoudboekje-item">
+        <div>
+          <h1>- {{ huishoudboekje.naam }} -</h1>
+          <div>{{huishoudboekje.omschrijving}}</div>
+        </div>
+        <div>
+          <button (click)="onArchive(huishoudboekje, false)">Dearchiveer</button>
+        </div>
+      </li>
+    </div>
+  </ul>
+</div>
