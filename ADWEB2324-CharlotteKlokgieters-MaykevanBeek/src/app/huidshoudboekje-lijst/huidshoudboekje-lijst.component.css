@@ -37,9 +37,6 @@ input {
 
 .huishoudboekjes {
   background-color: #fff2f4;
-}
-
-.huishoudboekjes {
   margin-top: 0;
   border: #ff6688 1px solid;
   border-radius: 0 12px 12px 12px;
@@ -142,4 +139,8 @@ label {
   justify-content: center;
   gap: 10px;
   margin-top: 10px;
+}
+
+#log-out-btn {
+  margin-bottom: 20px;
 }

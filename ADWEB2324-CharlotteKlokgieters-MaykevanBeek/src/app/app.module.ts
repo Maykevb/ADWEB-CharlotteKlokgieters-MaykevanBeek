@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { environment } from '../environments/environment';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,6 +13,10 @@ import { CategorieCreeerComponent } from './categorie-creeer/categorie-creeer.co
 import {HuishoudboekjeDetailsComponent} from "./huishoudboekje-details/huishoudboekje-details.component";
 import { CategorieLijstComponent } from './categorie-lijst/categorie-lijst.component';
 import { SaldoLijstComponent } from './saldo-lijst/saldo-lijst.component';
+import { AngularFireModule } from "@angular/fire/compat";
+import { AngularFireAuthModule } from "@angular/fire/compat/auth";
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -25,12 +30,16 @@ import { SaldoLijstComponent } from './saldo-lijst/saldo-lijst.component';
     CategorieCreeerComponent,
     CategorieLijstComponent,
     SaldoLijstComponent,
+    LoginComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Huishoudboekje } from '../models/huishoudboekje.model';
 import { HuishoudboekjeService } from '../huishoudboekje.service';
+import {AuthService} from "../auth.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-huidshoudboekje-lijst',
@@ -17,7 +19,7 @@ export class HuidshoudboekjeLijstComponent {
     this.activeTab = tab;
   }
 
-  constructor(private service: HuishoudboekjeService) {
+  constructor(private service: HuishoudboekjeService, private authService: AuthService, private router: Router) {
     service.getHuishoudboekjes().subscribe(huishoudboekjes => {
       this.huishoudboekjes = huishoudboekjes;
     });
@@ -39,6 +41,14 @@ export class HuidshoudboekjeLijstComponent {
   onArchive(huishoudboekje: Huishoudboekje, archive: boolean) {
     huishoudboekje.gearchiveerd = archive;
     this.service.updateHuishoudboekje(huishoudboekje);
+  }
+
+  signOut() {
+    this.authService.signOut().then((res: any) => {
+      this.router.navigateByUrl('login');
+    }).catch((error: any) => {
+      console.error(error);
+    })
   }
 }
 

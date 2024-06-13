@@ -1,0 +1,13 @@
+<div class="container">
+  <p class="title">Registreer</p>
+  <form [formGroup]="registerForm" (ngSubmit)="registerWithEmailAndPass()">
+    <label>Email</label>
+    <input formControlName="email" type="text">
+
+    <label>Wachtwoord</label>
+    <input formControlName="password" [type]="hide ? 'password' : 'text'">
+
+    <button type="submit" [disabled]="registerForm.invalid" class="btn btnFill">Registreer</button>
+  </form>
+  <p class="alternative">Heb al een account? <span routerLink="../login">Log in</span></p>
+</div>
