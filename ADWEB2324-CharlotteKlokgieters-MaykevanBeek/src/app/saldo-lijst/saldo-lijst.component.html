@@ -7,12 +7,29 @@
     <input type="month" id="month" (change)="filterByMonth()" [(ngModel)]="selectedMonth">
   </div>
 
+  <div class="graph">
+    <canvas baseChart width="600" height="400"
+        [type]="'line'"
+        [data]="ChartData"
+        [options]="lineChartOptions"
+        [legend]="lineChartLegend">
+    </canvas>
+  </div>
+
+  <div class="graph">
+    <canvas baseChart width="600" height="400"
+          [type]="'bar'"
+          [data]="barChartData"
+          [options]="barChartOptions"
+          [legend]="barChartLegend">
+    </canvas>
+  </div>
+
   <div class="container">
     <div class="saldo-item">
       <h2>Inkomsten</h2>
       <span class="totals">Totaal: €{{ totalInkomsten }}</span>
-      <div *ngFor="let inkomst of filterInkomsten" draggable="true" (dragstart)="dragStart($event, inkomst)">
-
+      <div *ngFor="let inkomst of filterInkomsten" draggable="true" (dragstart)="dragStart($event, inkomst)" (drag)="onDrag($event)" (dragend)="onDragEnd($event)">
         <div class="list-item" *ngIf="!inkomst.editMode">
           <div>
             <b>Tag:</b>
@@ -63,7 +80,7 @@
     <div class="saldo-item">
       <h2>Uitgaven</h2>
       <span class="totals">Totaal: €{{ totalUitgaven }}</span>
-      <div *ngFor="let uitgave of filterUitgaven" draggable="true" (dragstart)="dragStart($event, uitgave)">
+      <div *ngFor="let uitgave of filterUitgaven" draggable="true" (dragstart)="dragStart($event, uitgave)" (drag)="onDrag($event)" (dragend)="onDragEnd($event)">
         <div class="list-item" *ngIf="!uitgave.editMode">
           <div>
             <b>Tag:</b>

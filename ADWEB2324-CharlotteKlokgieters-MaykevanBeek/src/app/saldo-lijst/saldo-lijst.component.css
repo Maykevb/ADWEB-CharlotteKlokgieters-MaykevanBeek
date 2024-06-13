@@ -40,6 +40,15 @@ button {
   font-weight: bolder;
 }
 
+.graph {
+  background-color: #fff2f4;
+  padding: 10px 50px;
+  border-radius: 12px;
+  border: #ff99aa 2px solid;
+  margin-bottom: 40px;
+  display: block;
+}
+
 .error {
   color: #ff6688;
   border: #ff99aa 2px solid;

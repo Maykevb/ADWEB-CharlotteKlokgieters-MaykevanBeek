@@ -12,6 +12,7 @@ import { CategorieCreeerComponent } from './categorie-creeer/categorie-creeer.co
 import {HuishoudboekjeDetailsComponent} from "./huishoudboekje-details/huishoudboekje-details.component";
 import { CategorieLijstComponent } from './categorie-lijst/categorie-lijst.component';
 import { SaldoLijstComponent } from './saldo-lijst/saldo-lijst.component';
+import {BaseChartDirective} from "ng2-charts";
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { SaldoLijstComponent } from './saldo-lijst/saldo-lijst.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BaseChartDirective
   ],
   providers: [],
   bootstrap: [AppComponent]
