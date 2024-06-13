@@ -12,7 +12,7 @@
 </div>
 
 <div class="huishoudboekjes">
-  <ul *ngIf="activeTab === 'active'">
+  <ul *ngIf="activeTab === 'active'" class="flex-container">
     <div *ngFor="let huishoudboekje of huishoudboekjes | huishoudboekjeZoek:query">
       <li *ngIf="!huishoudboekje.gearchiveerd" class="huishoudboekje-item">
         <div *ngIf="!huishoudboekje.editMode">
@@ -40,7 +40,7 @@
     </div>
   </ul>
 
-  <ul *ngIf="activeTab === 'archived'">
+  <ul *ngIf="activeTab === 'archived'" class="flex-container">
     <div *ngFor="let huishoudboekje of huishoudboekjes | huishoudboekjeZoek:query">
       <li *ngIf="huishoudboekje.gearchiveerd" class="huishoudboekje-item">
         <div>
