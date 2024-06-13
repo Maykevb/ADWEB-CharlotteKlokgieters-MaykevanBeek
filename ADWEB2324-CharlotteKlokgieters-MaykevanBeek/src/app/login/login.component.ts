@@ -24,13 +24,15 @@ export class LoginComponent {
   signInWithEmailAndPass() {
     if (this.signInForm.valid) {
       const userData = this.signInForm.value;
-      this.authService.signInEmailAndPass(userData)
-        .then((res: any) => {
+      this.authService.signInEmailAndPass(userData).subscribe(
+        (userCredential) => {
           this.router.navigateByUrl('huishoudboekjes-overzicht');
-        })
-        .catch((error: any) => {
-          console.error(error);
-        });
+        },
+        (error) => {
+          console.error('Login error:', error);
+          alert('Inloggen gefaald. Check a.u.b. uw inloggegevens.');
+        }
+      );
     }
   }
 }

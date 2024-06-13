@@ -16,7 +16,7 @@
 <div class="huishoudboekjes">
   <ul *ngIf="activeTab === 'active'">
     <div *ngFor="let huishoudboekje of huishoudboekjes | huishoudboekjeZoek:query">
-      <li *ngIf="!huishoudboekje.gearchiveerd" class="huishoudboekje-item">
+      <li *ngIf="!huishoudboekje.gearchiveerd && ownerId === huishoudboekje.ownerId" class="huishoudboekje-item">
         <div *ngIf="!huishoudboekje.editMode">
           <a routerLink="../huishoudboekje/{{huishoudboekje.id}}">
             <h1>- {{ huishoudboekje.naam }} -</h1>
@@ -44,7 +44,7 @@
 
   <ul *ngIf="activeTab === 'archived'">
     <div *ngFor="let huishoudboekje of huishoudboekjes | huishoudboekjeZoek:query">
-      <li *ngIf="huishoudboekje.gearchiveerd" class="huishoudboekje-item">
+      <li *ngIf="huishoudboekje.gearchiveerd && ownerId === huishoudboekje.ownerId" class="huishoudboekje-item">
         <div>
           <h1>- {{ huishoudboekje.naam }} -</h1>
           <div>{{huishoudboekje.omschrijving}}</div>

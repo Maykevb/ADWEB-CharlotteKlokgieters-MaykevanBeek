@@ -4,7 +4,6 @@ import { Observable, Subscriber } from 'rxjs';
 import { initializeApp } from "firebase/app";
 import { Firestore, getFirestore, onSnapshot, collection, doc, addDoc, deleteDoc, updateDoc, getDoc } from "firebase/firestore";
 import {Categorie} from "./models/categorie.model";
-import {Saldo} from "./models/saldo.model";
 import {environment} from "../environments/environment";
 
 @Injectable({
@@ -19,7 +18,6 @@ export class CategorieService {
 
     // Initialize Firebase
     const app = initializeApp(firebaseConfig);
-
     this.firestore = getFirestore(app);
   }
 
@@ -33,7 +31,6 @@ export class CategorieService {
         });
 
         let filteredCategories = categorieen.filter((s: Categorie) => s.huishoudboekje === huishoudboekje);
-
         subscriber.next(filteredCategories);
       });
     });

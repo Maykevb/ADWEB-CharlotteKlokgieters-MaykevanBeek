@@ -38,6 +38,7 @@ label {
 
 span {
   text-decoration: underline;
+  cursor: pointer;
 }
 
 button {
