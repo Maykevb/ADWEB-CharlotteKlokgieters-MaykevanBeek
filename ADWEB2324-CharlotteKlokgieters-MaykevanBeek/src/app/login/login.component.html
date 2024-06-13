@@ -1,0 +1,13 @@
+<div class="container">
+  <p class="title">Log in</p>
+  <form [formGroup]="signInForm" (ngSubmit)="signInWithEmailAndPass()">
+    <label>Email</label>
+    <input formControlName="email" type="text">
+
+    <label>Wachtwoord</label>
+    <input formControlName="password" [type]="hide ? 'password' : 'text'">
+
+    <button type="submit" [disabled]="signInForm.invalid" class="btn btnFill">Log in</button>
+  </form>
+  <p class="alternative">Heb je nog geen account? <span routerLink="../register">Registreer</span></p>
+</div>
