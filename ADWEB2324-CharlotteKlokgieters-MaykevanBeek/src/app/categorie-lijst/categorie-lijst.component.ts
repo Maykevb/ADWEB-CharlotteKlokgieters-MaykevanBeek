@@ -60,4 +60,6 @@ export class CategorieLijstComponent {
     draggedItem.categorie = categorie;
     this.saldoService.updateCategorieOfSaldo(draggedItem, oldCategorie);
   }
+
+  protected readonly undefined = undefined;
 }

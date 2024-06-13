@@ -24,13 +24,15 @@ export class RegisterComponent {
   registerWithEmailAndPass() {
     if (this.registerForm.valid) {
       const userData = this.registerForm.value;
-      this.authService.registerEmailAndPass(userData)
-        .then((res: any) => {
+      this.authService.registerEmailAndPass(userData).subscribe(
+        (userCredential) => {
           this.router.navigateByUrl('huishoudboekjes-overzicht');
-        })
-        .catch((error: any) => {
-          console.error(error);
-        });
+        },
+        (error) => {
+          console.error('Login error:', error);
+          alert('Registreren gefaald.');
+        }
+      );
     }
   }
 }

@@ -6,8 +6,9 @@ export class Categorie {
   eindDatum?: Date | null;
   editMode?: boolean;
   huishoudboekje: string | null | undefined
+  ownerId: string | undefined;
 
-  constructor(id: string, naam: string, budget?: number, eindDatum?: Date) {
+  constructor(id: string, naam: string, ownerId: string | undefined, budget?: number, eindDatum?: Date) {
     this.id = id;
     this.naam = naam;
     this.budget = budget;
@@ -15,5 +16,6 @@ export class Categorie {
     this.eindDatum = eindDatum;
     this.editMode = false;
     this.huishoudboekje = "";
+    this.ownerId = ownerId;
   }
 }
