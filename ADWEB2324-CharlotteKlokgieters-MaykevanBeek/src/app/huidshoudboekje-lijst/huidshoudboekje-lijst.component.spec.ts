@@ -62,61 +62,96 @@ describe('HuidshoudboekjeLijstComponent', () => {
   });
 
   it('should create the component', () => {
+    // Assert
     expect(component).toBeTruthy();
   });
 
   it('should initialize with activeTab set to "active"', () => {
+    // Assert
     expect(component.activeTab).toEqual('active');
   });
 
   it('should fetch huishoudboekjes on component initialization', () => {
+    // Assert
     expect(component.huishoudboekjes).toEqual(mockHuishoudboekjes);
   });
 
   it('should switch activeTab correctly', () => {
+    // Act
     component.setActiveTab('archived');
+
+    // Assert
     expect(component.activeTab).toEqual('archived');
   });
 
   it('should toggle edit mode of huishoudboekje', () => {
+    // Arrange
     const testHuishoudboekje = mockHuishoudboekjes[0];
+
+    // Act
     component.toggleEdit(testHuishoudboekje);
+
+    // Assert
     expect(testHuishoudboekje.editMode).toBeTrue();
 
+    // Act
     component.toggleEdit(testHuishoudboekje);
+
+    // Assert
     expect(testHuishoudboekje.editMode).toBeFalse();
   });
 
   it('should save changes to huishoudboekje', () => {
+    // Arrange
     const testHuishoudboekje = mockHuishoudboekjes[0];
+
+    // Act
     component.onSave(testHuishoudboekje);
+
+    // Assert
     expect(testHuishoudboekje.editMode).toBeFalse();
     expect(mockHuishoudboekjeService.updateHuishoudboekje).toHaveBeenCalledWith(testHuishoudboekje);
   });
 
   it('should archive/dearchive huishoudboekje', () => {
+    // Arrange
     const testHuishoudboekje = mockHuishoudboekjes[0];
 
+    // Act
     component.onArchive(testHuishoudboekje, true);
+
+    // Assert
     expect(testHuishoudboekje.gearchiveerd).toBeTrue();
     expect(mockHuishoudboekjeService.updateHuishoudboekje).toHaveBeenCalledWith(testHuishoudboekje);
 
+    // Act
     component.onArchive(testHuishoudboekje, false);
+
+    // Assert
     expect(testHuishoudboekje.gearchiveerd).toBeFalse();
     expect(mockHuishoudboekjeService.updateHuishoudboekje).toHaveBeenCalledWith(testHuishoudboekje);
   });
 
   it('should call signOut method on logout button click', () => {
+    // Arrange
     const logoutButton = fixture.debugElement.nativeElement.querySelector('#log-out-btn');
+
+    // Act
     logoutButton.click();
     fixture.detectChanges();
 
+    // Assert
     expect(mockAuthService.signOut).toHaveBeenCalled();
   });
 
   it('should unsubscribe from subscriptions on ngOnDestroy', () => {
+    // Arrange
     spyOn(component.subscriptions, 'unsubscribe');
+
+    // Act
     component.ngOnDestroy();
+
+    // Assert
     expect(component.subscriptions.unsubscribe).toHaveBeenCalled();
   });
 });

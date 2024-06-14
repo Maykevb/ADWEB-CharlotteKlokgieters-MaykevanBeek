@@ -49,25 +49,33 @@ describe('CategorieCreeerComponent', () => {
   });
 
   it('should create', () => {
+    // Arrange
+    // Act
+    // Assert
     expect(component).toBeTruthy();
   });
 
   it('should not add category when name is empty', () => {
+    // Arrange
     component.categorie.naam = '';
 
+    // Act
     component.onAdd();
 
+    // Assert
     expect(mockService.addCategorie).not.toHaveBeenCalled();
     expect(component.categorie.naam).toEqual('');
   });
 
   it('should add category when name is not empty', async () => {
+    // Arrange
     component.categorie.naam = 'test';
-
     mockService.addCategorie.and.returnValue(Promise.resolve());
 
+    // Act
     component.onAdd();
 
+    // Assert
     expect(mockService.addCategorie).toHaveBeenCalled();
     expect(component.categorie.naam).toEqual('test');
   });

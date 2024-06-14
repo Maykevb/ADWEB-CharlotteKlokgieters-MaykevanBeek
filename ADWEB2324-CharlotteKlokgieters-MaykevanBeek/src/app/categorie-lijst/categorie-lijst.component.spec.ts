@@ -1,11 +1,10 @@
-import { CategorieLijstComponent } from "./categorie-lijst.component";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { FormsModule } from '@angular/forms';
 import { Categorie } from "../models/categorie.model";
 import { CategorieService } from '../categorie.service';
 import { SaldoService } from "../saldo.service";
 import { of } from "rxjs";
-import { FormsModule } from '@angular/forms';
-import {Saldo} from "../models/saldo.model";
+import { CategorieLijstComponent } from "./categorie-lijst.component";
 
 describe('CategorieLijstComponent', () => {
   let component: CategorieLijstComponent;
@@ -35,10 +34,12 @@ describe('CategorieLijstComponent', () => {
   });
 
   it('should create', () => {
+    // Assert
     expect(component).toBeTruthy();
   });
 
   it('should initialize categorieen correctly on ngOnInit', () => {
+    // Arrange
     const mockCategorieen: Categorie[] = [
       {
         id: '1', naam: 'Category 1', budget: 100, eindDatum: null, editMode: false,
@@ -56,14 +57,17 @@ describe('CategorieLijstComponent', () => {
 
     mockCategorieService.getCategorieen.and.returnValue(of(mockCategorieen));
 
+    // Act
     component.huishoudboekje = 'test-huishoudboekje';
     component.ngOnInit();
 
+    // Assert
     expect(component.categorieen).toEqual(mockCategorieen);
     expect(mockCategorieService.getCategorieen).toHaveBeenCalledWith('test-huishoudboekje');
   });
 
   it('should toggle edit mode of categorie', () => {
+    // Arrange
     const mockCategorie: Categorie = {
       id: '1', naam: 'Category 1', budget: 100, eindDatum: null, editMode: false,
       huidigBudget: 0,
@@ -71,14 +75,21 @@ describe('CategorieLijstComponent', () => {
       ownerId: undefined
     };
 
+    // Act
     component.toggleEdit(mockCategorie);
+
+    // Assert
     expect(mockCategorie.editMode).toBe(true);
 
+    // Act
     component.toggleEdit(mockCategorie);
+
+    // Assert
     expect(mockCategorie.editMode).toBe(false);
   });
 
   it('should save categorie when valid', () => {
+    // Arrange
     const mockCategorie: Categorie = {
       id: '1', naam: 'Category 1', budget: 100, eindDatum: null, editMode: true,
       huidigBudget: 0,
@@ -86,12 +97,15 @@ describe('CategorieLijstComponent', () => {
       ownerId: undefined
     };
 
+    // Act
     component.onSave(mockCategorie);
 
+    // Assert
     expect(mockCategorie.editMode).toBe(false);
   });
 
   it('should delete categorie', () => {
+    // Arrange
     const mockCategorie: Categorie = {
       id: '1', naam: 'Category 1', budget: 100, eindDatum: null, editMode: false,
       huidigBudget: 0,
@@ -99,34 +113,47 @@ describe('CategorieLijstComponent', () => {
       ownerId: undefined
     };
 
+    // Act
     component.onDelete(mockCategorie);
 
+    // Assert
     expect(mockCategorieService.deleteCategorie).toHaveBeenCalledWith(mockCategorie);
   });
 
   it('should call preventDefault on dragOver event', () => {
+    // Arrange
     const event = document.createEvent('DragEvent');
     event.initEvent('dragover', true, true);
     const preventDefaultSpy = spyOn(event, 'preventDefault');
 
+    // Act
     component.dragOver(event);
 
+    // Assert
     expect(preventDefaultSpy).toHaveBeenCalled();
   });
 
   it('should call preventDefault on dragEnter event', () => {
+    // Arrange
     const event = document.createEvent('DragEvent');
     event.initEvent('dragover', true, true);
     const preventDefaultSpy = spyOn(event, 'preventDefault');
 
+    // Act
     component.dragEnter(event);
 
+    // Assert
     expect(preventDefaultSpy).toHaveBeenCalled();
   });
 
   it('should unsubscribe from subscriptions on ngOnDestroy', () => {
+    // Arrange
     spyOn(component.subscriptions, 'unsubscribe');
+
+    // Act
     component.ngOnDestroy();
+
+    // Assert
     expect(component.subscriptions.unsubscribe).toHaveBeenCalled();
   });
 });
