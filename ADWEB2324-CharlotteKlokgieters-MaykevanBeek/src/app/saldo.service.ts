@@ -3,8 +3,8 @@ import { Observable, Subscriber } from 'rxjs';
 import { environment } from "../environments/environment";
 import { initializeApp } from "firebase/app";
 import { Firestore, getFirestore, onSnapshot, collection, doc, addDoc, deleteDoc, updateDoc, getDoc } from "firebase/firestore";
-import {Saldo} from "./models/saldo.model";
-import {Categorie} from "./models/categorie.model";
+import { Saldo } from "./models/saldo.model";
+import { Categorie } from "./models/categorie.model";
 import { CategorieService } from "./categorie.service";
 
 
@@ -21,7 +21,6 @@ export class SaldoService {
 
     // Initialize Firebase
     const app = initializeApp(firebaseConfig);
-
     this.firestore = getFirestore(app);
 
     this.categorieService = categorieService;

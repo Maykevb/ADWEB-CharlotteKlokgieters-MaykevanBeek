@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subscriber } from 'rxjs';
-
 import { initializeApp } from "firebase/app";
 import { Firestore, getFirestore, onSnapshot, collection, doc, addDoc, deleteDoc, updateDoc, getDoc } from "firebase/firestore";
-import {Categorie} from "./models/categorie.model";
-import {environment} from "../environments/environment";
+import { Categorie } from "./models/categorie.model";
+import { environment } from "../environments/environment";
 
 @Injectable({
   providedIn: 'root'
@@ -56,7 +55,7 @@ export class CategorieService {
     categorie.budget = parseFloat(categorie.budget)
     categorie.huidigBudget = categorie.budget
     const { id, ...object } = Object.assign({}, categorie);
-    addDoc(collection(this.firestore, 'Categorieen'), object);
+    return addDoc(collection(this.firestore, 'Categorieen'), object);
   }
 
 

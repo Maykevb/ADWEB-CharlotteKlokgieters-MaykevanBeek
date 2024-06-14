@@ -29,7 +29,8 @@
     <div class="saldo-item">
       <h2>Inkomsten</h2>
       <span class="totals">Totaal: €{{ totalInkomsten }}</span>
-      <div *ngFor="let inkomst of filterInkomsten" draggable="true" (dragstart)="dragStart($event, inkomst)" (drag)="onDrag($event)" (dragend)="onDragEnd($event)">
+      <div *ngFor="let inkomst of filterInkomsten" draggable="true" (dragstart)="dragStart($event, inkomst)"
+           (drag)="onDrag($event)" (dragend)="onDragEnd($event)">
         <div class="list-item" *ngIf="!inkomst.editMode">
           <div>
             <b>Tag:</b>
@@ -62,7 +63,8 @@
           <span *ngIf="inkomst.categorie">
              <b>Categorie:</b> {{ inkomst.categorie }}
           </span>
-          <b>Bedrag:</b> <input id="bedrag-{{inkomst.bedrag}}" [(ngModel)]="inkomst.bedrag" type="number" placeholder="bedrag" class="edit-input">
+          <b>Bedrag:</b> <input id="bedrag-{{inkomst.bedrag}}" [(ngModel)]="inkomst.bedrag" type="number"
+              placeholder="bedrag" class="edit-input">
           <div>
             <b>Datum:</b>
             <span *ngIf="inkomst.datum">
@@ -80,7 +82,8 @@
     <div class="saldo-item">
       <h2>Uitgaven</h2>
       <span class="totals">Totaal: €{{ totalUitgaven }}</span>
-      <div *ngFor="let uitgave of filterUitgaven" draggable="true" (dragstart)="dragStart($event, uitgave)" (drag)="onDrag($event)" (dragend)="onDragEnd($event)">
+      <div *ngFor="let uitgave of filterUitgaven" draggable="true" (dragstart)="dragStart($event, uitgave)"
+           (drag)="onDrag($event)" (dragend)="onDragEnd($event)">
         <div class="list-item" *ngIf="!uitgave.editMode">
           <div>
             <b>Tag:</b>
@@ -113,7 +116,8 @@
           <span *ngIf="uitgave.categorie">
              <b>Categorie:</b> {{ uitgave.categorie }}
           </span>
-          <b>Bedrag:</b> <input id="bedrag-{{uitgave.bedrag}}" [(ngModel)]="uitgave.bedrag" type="number" placeholder="bedrag" class="edit-input">
+          <b>Bedrag:</b> <input id="bedrag-{{uitgave.bedrag}}" [(ngModel)]="uitgave.bedrag" type="number"
+                placeholder="bedrag" class="edit-input">
           <div>
             <b>Datum:</b>
             <span *ngIf="uitgave.datum">

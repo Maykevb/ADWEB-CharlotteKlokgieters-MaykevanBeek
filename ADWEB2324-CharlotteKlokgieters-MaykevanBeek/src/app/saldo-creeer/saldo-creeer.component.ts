@@ -1,7 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { Saldo } from "../models/saldo.model";
-import {SaldoService} from "../saldo.service";
+import { SaldoService } from "../saldo.service";
 import { AuthService } from "../auth.service";
+import { Subscription } from "rxjs";
 
 @Component({
   selector: 'app-saldo-creeer',
@@ -14,14 +15,17 @@ export class SaldoCreeerComponent {
   submitted = false;
 
   @Input() huishoudboekje: string | null | undefined;
+  private subscriptions: Subscription = new Subscription();
 
   constructor(private service: SaldoService, private authService: AuthService) { }
 
   ngOnInit(): void {
-    this.authService.getCurrentUserId().subscribe(userId => {
+    const authSub = this.authService.getCurrentUserId().subscribe(userId => {
       this.ownerId = userId;
       this.saldo = new Saldo("", "", this.ownerId);
     });
+
+    this.subscriptions.add(authSub);
   }
 
   onAdd() {
@@ -32,5 +36,9 @@ export class SaldoCreeerComponent {
       this.saldo = new Saldo("", "", this.ownerId);
       this.submitted = false;
     }
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.unsubscribe();
   }
 }

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AuthService } from "../auth.service";
 import { Router } from "@angular/router";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { Subscription } from "rxjs";
 
 @Component({
   selector: 'app-register',
@@ -12,7 +13,9 @@ export class RegisterComponent {
   registerForm!: FormGroup;
   submitted: boolean = false;
 
-  constructor(public authService: AuthService, public router: Router, private formBuilder: FormBuilder) { }
+  private subscriptions: Subscription = new Subscription();
+
+  constructor(private authService: AuthService, private  router: Router, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
     this.registerForm = this.formBuilder.group({
@@ -25,7 +28,7 @@ export class RegisterComponent {
     this.submitted = true;
     if (this.registerForm.valid) {
       const userData = this.registerForm.value;
-      this.authService.registerEmailAndPass(userData).subscribe(
+      const authSub = this.authService.registerEmailAndPass(userData).subscribe(
         (userCredential) => {
           this.router.navigateByUrl('huishoudboekjes-overzicht');
           this.submitted = false;
@@ -35,6 +38,12 @@ export class RegisterComponent {
           alert('Registreren gefaald.');
         }
       );
+
+      this.subscriptions.add(authSub);
     }
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.unsubscribe();
   }
 }

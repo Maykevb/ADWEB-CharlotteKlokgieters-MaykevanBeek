@@ -1,14 +1,13 @@
 header {
-    text-align: center;
-    background: #ffe5e9;
-    margin: 0;
-    padding: 20px;
-    border-radius: 12px;
-    border: 2px solid #ff99aa;
-    margin-bottom: 30px;
-    font-size: 30px;
-    font-weight: bold;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
+  text-align: center;
+  background: #ffe5e9;
+  padding: 20px;
+  border-radius: 12px;
+  border: 2px solid #ff99aa;
+  margin: 0 0 30px;
+  font-size: 30px;
+  font-weight: bold;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
 }
 
 a {
