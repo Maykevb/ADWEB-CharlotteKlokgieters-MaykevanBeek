@@ -20,7 +20,13 @@ export class HuidshoudboekjeLijstComponent {
   }
 
   constructor(private service: HuishoudboekjeService, private authService: AuthService, private router: Router) {
-    service.getHuishoudboekjes().subscribe(huishoudboekjes => {
+   /* service.getHuishoudboekjes().subscribe(huishoudboekjes => {
+      this.huishoudboekjes = huishoudboekjes;
+    });*/
+  }
+
+  ngOnInit(): void {
+    this.service.getHuishoudboekjes().subscribe(huishoudboekjes => {
       this.huishoudboekjes = huishoudboekjes;
     });
   }
