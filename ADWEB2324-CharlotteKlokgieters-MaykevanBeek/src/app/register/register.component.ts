@@ -12,7 +12,7 @@ export class RegisterComponent {
   registerForm!: FormGroup;
   submitted: boolean = false;
 
-  constructor(private authService: AuthService, private  router: Router, private formBuilder: FormBuilder) { }
+  constructor(public authService: AuthService, public router: Router, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
     this.registerForm = this.formBuilder.group({

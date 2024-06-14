@@ -41,15 +41,61 @@ describe('LoginComponent', () => {
     expect(component.signInForm.valid).toBeFalsy();
   });
 
+  it('form validity', () => {
+    // Arrange
+    let errors = {};
+    const email = component.signInForm.controls['email'];
+    const password = component.signInForm.controls['password'];
+
+    // Act
+    email.setValue('test@test.com');
+    password.setValue('123456');
+    errors = component.signInForm.errors || {};
+
+    // Assert
+    expect(component.signInForm.valid).toBeTruthy();
+    expect(errors).toEqual({});
+  });
+
   it('should call signInWithEmailAndPass method', () => {
+    // Arrange
     const userData = { email: 'test@test.com', password: '123456' };
     component.signInForm.setValue(userData);
 
     mockAuthService.signInEmailAndPass.and.returnValue(of({})); // Mock successful sign-in
 
+    // Act
     component.signInWithEmailAndPass();
 
+    // Assert
     expect(mockAuthService.signInEmailAndPass).toHaveBeenCalledWith(userData);
     expect(mockRouter.navigateByUrl).toHaveBeenCalledWith('huishoudboekjes-overzicht');
   });
+
+  it('should handle invalid form submission', () => {
+    // Arrange
+    component.signInForm.setValue({ email: '', password: '' });
+
+    // Act
+    component.signInWithEmailAndPass();
+
+    // Assert
+    expect(mockAuthService.signInEmailAndPass).not.toHaveBeenCalled();
+    expect(mockRouter.navigateByUrl).not.toHaveBeenCalled();
+  });
+
+  it('should handle sign-in error', fakeAsync(() => {
+    // Arrange
+    const userData = { email: 'test@test.com', password: '123456' };
+    component.signInForm.setValue(userData);
+    mockAuthService.signInEmailAndPass.and.returnValue(throwError('Invalid credentials'));
+
+    // Act
+    component.signInWithEmailAndPass();
+    tick();
+
+    // Assert
+    expect(mockAuthService.signInEmailAndPass).toHaveBeenCalledWith(userData);
+    expect(mockRouter.navigateByUrl).not.toHaveBeenCalled();
+  }));
 });

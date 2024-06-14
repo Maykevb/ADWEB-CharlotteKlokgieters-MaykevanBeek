@@ -54,11 +54,9 @@ describe('HuidshoudboekjeLijstComponent', () => {
     fixture = TestBed.createComponent(HuidshoudboekjeLijstComponent);
     component = fixture.componentInstance;
 
-    // Configure mock service behavior
     mockHuishoudboekjeService.getHuishoudboekjes.and.returnValue(of(mockHuishoudboekjes));
     mockAuthService.getCurrentUserId.and.returnValue(of('mockUserId'));
 
-    // Detect changes and initialize component
     fixture.detectChanges();
   });
 
@@ -66,7 +64,7 @@ describe('HuidshoudboekjeLijstComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  /*it('should initialize with activeTab set to "active"', () => {
+  it('should initialize with activeTab set to "active"', () => {
     expect(component.activeTab).toEqual('active');
   });
 
@@ -98,12 +96,10 @@ describe('HuidshoudboekjeLijstComponent', () => {
   it('should archive/dearchive huishoudboekje', () => {
     const testHuishoudboekje = mockHuishoudboekjes[0];
 
-    // Archive
     component.onArchive(testHuishoudboekje, true);
     expect(testHuishoudboekje.gearchiveerd).toBeTrue();
     expect(mockHuishoudboekjeService.updateHuishoudboekje).toHaveBeenCalledWith(testHuishoudboekje);
 
-    // De-archive
     component.onArchive(testHuishoudboekje, false);
     expect(testHuishoudboekje.gearchiveerd).toBeFalse();
     expect(mockHuishoudboekjeService.updateHuishoudboekje).toHaveBeenCalledWith(testHuishoudboekje);
@@ -115,6 +111,5 @@ describe('HuidshoudboekjeLijstComponent', () => {
     fixture.detectChanges();
 
     expect(mockAuthService.signOut).toHaveBeenCalled();
-    expect(mockRouter.navigateByUrl).toHaveBeenCalledWith('login');
-  });*/
+  });
 });

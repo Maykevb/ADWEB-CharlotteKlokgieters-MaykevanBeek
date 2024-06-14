@@ -4,8 +4,8 @@ import { CategorieService } from '../categorie.service';
 import { of } from 'rxjs';
 import { FormsModule } from '@angular/forms';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import {AngularFireAuth, AngularFireAuthModule} from "@angular/fire/compat/auth";
-import {AuthService} from "../auth.service";
+import { AngularFireAuth, AngularFireAuthModule } from "@angular/fire/compat/auth";
+import { AuthService } from "../auth.service";
 
 class MockCategorieService {
   getCategorieen() {
@@ -25,7 +25,9 @@ describe('CategorieCreeerComponent', () => {
 
   beforeEach(async () => {
     mockService = new MockCategorieService();
-    mockAuthService = jasmine.createSpyObj('AuthService', { getCurrentUserId: of('test-user-id') });
+    mockAuthService = jasmine.createSpyObj('AuthService', {
+      getCurrentUserId: of('test-user-id')
+    });
 
     await TestBed.configureTestingModule({
       declarations: [ CategorieCreeerComponent ],

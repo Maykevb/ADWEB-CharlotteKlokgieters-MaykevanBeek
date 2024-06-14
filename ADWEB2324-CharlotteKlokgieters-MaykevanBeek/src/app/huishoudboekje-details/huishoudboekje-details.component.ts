@@ -19,10 +19,11 @@ export class HuishoudboekjeDetailsComponent {
   }
 
   ngOnInit(): void {
-        if (this.huidigHuishoudboekjeID != null) {
-      this.huishoudService.getHuishoudboekje(this.huidigHuishoudboekjeID).subscribe(owner => {
-        this.huidigHuishoudboekjeOwner = owner?.ownerId
-      })
+      if (this.huidigHuishoudboekjeID != null) {
+        this.huishoudService.getHuishoudboekje(this.huidigHuishoudboekjeID).subscribe(owner => {
+          this.huidigHuishoudboekjeOwner = owner?.ownerId
+        })
+
       this.authService.getCurrentUserId().subscribe(userId => {
         this.ownerId = userId;
       });

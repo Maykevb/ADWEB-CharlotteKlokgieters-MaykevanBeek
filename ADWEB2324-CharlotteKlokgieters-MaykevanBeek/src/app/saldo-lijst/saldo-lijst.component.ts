@@ -172,7 +172,7 @@ export class SaldoLijstComponent implements OnInit {
   }
 
   getTotalSaldo() {
-    this.totalSaldo = this.totalInkomsten - this.totalUitgaven;
+    this.totalSaldo = this.totalInkomsten + this.totalUitgaven;
   }
 
   toggleEdit(saldo: Saldo) {

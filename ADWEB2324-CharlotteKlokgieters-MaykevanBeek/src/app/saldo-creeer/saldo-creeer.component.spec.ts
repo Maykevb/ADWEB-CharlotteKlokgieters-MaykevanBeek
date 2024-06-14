@@ -3,9 +3,9 @@ import { FormsModule } from '@angular/forms';
 import { SaldoCreeerComponent } from './saldo-creeer.component';
 import { SaldoService } from '../saldo.service';
 import { Saldo } from '../models/saldo.model';
-import { AngularFireAuth, AngularFireAuthModule } from "@angular/fire/compat/auth";
-import {AuthService} from "../auth.service";
-import {of} from "rxjs";
+import { AngularFireAuth } from "@angular/fire/compat/auth";
+import { AuthService } from "../auth.service";
+import { of } from "rxjs";
 
 describe('SaldoCreeerComponent', () => {
   let component: SaldoCreeerComponent;
@@ -15,7 +15,8 @@ describe('SaldoCreeerComponent', () => {
 
   beforeEach(async () => {
     mockSaldoService = jasmine.createSpyObj('SaldoService', ['addSaldo']);
-    mockAuthService = jasmine.createSpyObj('AuthService', { getCurrentUserId: of('test-user-id') });
+    mockAuthService = jasmine.createSpyObj('AuthService', ['getCurrentUserId']);
+    mockAuthService.getCurrentUserId.and.returnValue(of('test-user-id'));
 
     await TestBed.configureTestingModule({
       declarations: [SaldoCreeerComponent],
@@ -35,6 +36,36 @@ describe('SaldoCreeerComponent', () => {
   });
 
   it('should create the component', () => {
+    // Assert
     expect(component).toBeTruthy();
+  });
+
+  it('should initialize ownerId on ngOnInit', () => {
+    // Arrange
+    const testUserId = 'test-user-id';
+
+    // Act
+    fixture.detectChanges();
+
+    // Assert
+    expect(component.ownerId).toBe(testUserId);
+    expect(component.saldo.ownerId).toBe(testUserId);
+  });
+
+  it('should add saldo correctly when onAdd is called', () => {
+    // Arrange
+    component.huishoudboekje = 'TestHuishoudboekje';
+    component.saldo.bedrag = 100;
+
+    // Act
+    component.onAdd();
+
+    // Assert
+    expect(mockSaldoService.addSaldo).toHaveBeenCalledOnceWith(jasmine.objectContaining({
+      bedrag: 100,
+      huishoudboekje: 'TestHuishoudboekje',
+      ownerId: 'test-user-id'
+    }));
+    expect(component.submitted).toBeFalse();
   });
 });

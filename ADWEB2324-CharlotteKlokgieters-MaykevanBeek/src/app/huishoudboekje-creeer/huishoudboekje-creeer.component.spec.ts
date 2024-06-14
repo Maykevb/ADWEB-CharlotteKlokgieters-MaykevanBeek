@@ -3,8 +3,8 @@ import { FormsModule } from '@angular/forms';
 import { HuishoudboekjeCreeerComponent } from './huishoudboekje-creeer.component';
 import { HuishoudboekjeService } from '../huishoudboekje.service';
 import { AngularFireAuth, AngularFireAuthModule } from "@angular/fire/compat/auth";
-import {AuthService} from "../auth.service";
-import {of} from "rxjs";
+import { AuthService } from "../auth.service";
+import { of } from "rxjs";
 
 describe('HuishoudboekjeCreeerComponent', () => {
   let component: HuishoudboekjeCreeerComponent;
@@ -21,7 +21,7 @@ describe('HuishoudboekjeCreeerComponent', () => {
       imports: [
         FormsModule,
         AngularFireAuthModule,
-      ], // Importeer FormsModule voor ngModel binding
+      ],
       providers: [
         { provide: HuishoudboekjeService, useValue: mockHuishoudboekjeService },
         { provide: AngularFireAuth, useValue: {} },
@@ -44,5 +44,31 @@ describe('HuishoudboekjeCreeerComponent', () => {
     expect(component.huishoudboekje).toBeDefined();
     expect(component.huishoudboekje.naam).toEqual('');
     expect(component.huishoudboekje.omschrijving).toEqual('');
+  });
+
+  it('should add huishoudboekje when naam is not empty', () => {
+    component.huishoudboekje.naam = 'Test Huishoudboekje';
+
+    component.onAdd();
+
+    const expectedHuishoudboekje = {
+      id: '',
+      naam: 'Test Huishoudboekje',
+      omschrijving: '',
+      gearchiveerd: false,
+      ownerId: 'test-user-id'
+    };
+
+    expect(mockHuishoudboekjeService.addHuishoudboekje).toHaveBeenCalledWith(jasmine.objectContaining(expectedHuishoudboekje));
+    expect(component.huishoudboekje.naam).toEqual('');
+  });
+
+  it('should not add huishoudboekje when naam is empty', () => {
+    component.huishoudboekje.naam = '';
+
+    component.onAdd();
+
+    expect(mockHuishoudboekjeService.addHuishoudboekje).not.toHaveBeenCalled();
+    expect(component.huishoudboekje.naam).toEqual('');
   });
 });

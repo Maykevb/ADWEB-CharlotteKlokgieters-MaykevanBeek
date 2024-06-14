@@ -1,10 +1,10 @@
-import { TestBed, ComponentFixture, fakeAsync, tick } from '@angular/core/testing';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './register.component';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
 import { FormBuilder } from '@angular/forms';
-import { of } from 'rxjs';
+import { of, throwError } from 'rxjs';
 
 describe('RegisterComponent', () => {
   let component: RegisterComponent;
@@ -17,17 +17,15 @@ describe('RegisterComponent', () => {
     mockRouter = jasmine.createSpyObj('Router', ['navigateByUrl']);
 
     await TestBed.configureTestingModule({
-      declarations: [ RegisterComponent ],
-      imports: [ ReactiveFormsModule, FormsModule ],
+      declarations: [RegisterComponent],
+      imports: [ReactiveFormsModule, FormsModule],
       providers: [
         FormBuilder,
         { provide: AuthService, useValue: mockAuthService },
         { provide: Router, useValue: mockRouter }
       ]
     }).compileComponents();
-  });
 
-  beforeEach(() => {
     fixture = TestBed.createComponent(RegisterComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
@@ -36,4 +34,52 @@ describe('RegisterComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should register with email and password when form is valid', fakeAsync(() => {
+    // Arrange
+    const email = 'test@example.com';
+    const password = 'password';
+    component.registerForm.setValue({ email, password });
+    mockAuthService.registerEmailAndPass.and.returnValue(of({}));
+
+    // Act
+    component.registerWithEmailAndPass();
+    tick();
+
+    // Assert
+    expect(component.submitted).toBeFalse();
+    expect(mockAuthService.registerEmailAndPass).toHaveBeenCalledWith({ email, password });
+    expect(mockRouter.navigateByUrl).toHaveBeenCalledWith('huishoudboekjes-overzicht');
+  }));
+
+  it('should not register when form is invalid', () => {
+    // Arrange
+    component.registerForm.setValue({ email: '', password: '' });
+    mockAuthService.registerEmailAndPass.and.returnValue(of({}));
+
+    // Act
+    component.registerWithEmailAndPass();
+
+    // Assert
+    expect(component.submitted).toBeTrue(); // submitted should remain true
+    expect(mockAuthService.registerEmailAndPass).not.toHaveBeenCalled();
+    expect(mockRouter.navigateByUrl).not.toHaveBeenCalled();
+  });
+
+  it('should handle registration error', fakeAsync(() => {
+    // Arrange
+    const email = 'test@example.com';
+    const password = 'password';
+    component.registerForm.setValue({ email, password });
+    mockAuthService.registerEmailAndPass.and.returnValue(throwError('Registration failed'));
+
+    // Act
+    component.registerWithEmailAndPass();
+    tick();
+
+    // Assert
+    expect(mockAuthService.registerEmailAndPass).toHaveBeenCalledWith({ email, password });
+    expect(mockRouter.navigateByUrl).not.toHaveBeenCalled();
+  }));
 });
+
