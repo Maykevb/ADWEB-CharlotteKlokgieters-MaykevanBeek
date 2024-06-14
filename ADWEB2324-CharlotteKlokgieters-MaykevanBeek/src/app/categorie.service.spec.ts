@@ -12,7 +12,7 @@ describe('HuishoudboekjeService', () => {
   });
 
   it('should be created', () => {
-    // Asserts
+    // Assert
     expect(service).toBeTruthy();
   });
 });
