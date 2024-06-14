@@ -15,7 +15,7 @@ export class CategorieLijstComponent {
   submitted = false;
 
   @Input() huishoudboekje: string | null | undefined;
-  private subscriptions: Subscription = new Subscription();
+  subscriptions: Subscription = new Subscription();
 
   constructor(private service: CategorieService, saldoService: SaldoService) {
     this.saldoService = saldoService;

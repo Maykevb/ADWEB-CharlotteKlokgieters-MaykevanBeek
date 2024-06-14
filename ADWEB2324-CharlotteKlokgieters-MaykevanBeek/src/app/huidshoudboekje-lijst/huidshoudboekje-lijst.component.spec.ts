@@ -112,4 +112,10 @@ describe('HuidshoudboekjeLijstComponent', () => {
 
     expect(mockAuthService.signOut).toHaveBeenCalled();
   });
+
+  it('should unsubscribe from subscriptions on ngOnDestroy', () => {
+    spyOn(component.subscriptions, 'unsubscribe');
+    component.ngOnDestroy();
+    expect(component.subscriptions.unsubscribe).toHaveBeenCalled();
+  });
 });

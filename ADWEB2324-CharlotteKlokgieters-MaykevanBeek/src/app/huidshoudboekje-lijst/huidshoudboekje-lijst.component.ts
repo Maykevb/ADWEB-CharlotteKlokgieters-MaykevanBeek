@@ -17,7 +17,7 @@ export class HuidshoudboekjeLijstComponent {
   huishoudboekjes: Huishoudboekje[] = [];
   submitted = false;
 
-  private subscriptions: Subscription = new Subscription();
+  subscriptions: Subscription = new Subscription();
 
   setActiveTab(tab: string) {
     this.activeTab = tab;

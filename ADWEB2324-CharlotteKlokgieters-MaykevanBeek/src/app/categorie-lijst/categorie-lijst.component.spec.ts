@@ -5,6 +5,7 @@ import { CategorieService } from '../categorie.service';
 import { SaldoService } from "../saldo.service";
 import { of } from "rxjs";
 import { FormsModule } from '@angular/forms';
+import {Saldo} from "../models/saldo.model";
 
 describe('CategorieLijstComponent', () => {
   let component: CategorieLijstComponent;
@@ -100,5 +101,31 @@ describe('CategorieLijstComponent', () => {
     component.onDelete(mockCategorie);
 
     expect(mockCategorieService.deleteCategorie).toHaveBeenCalledWith(mockCategorie);
+  });
+
+  it('should call preventDefault on dragOver event', () => {
+    const event = document.createEvent('DragEvent');
+    event.initEvent('dragover', true, true);
+    const preventDefaultSpy = spyOn(event, 'preventDefault');
+
+    component.dragOver(event);
+
+    expect(preventDefaultSpy).toHaveBeenCalled();
+  });
+
+  it('should call preventDefault on dragEnter event', () => {
+    const event = document.createEvent('DragEvent');
+    event.initEvent('dragover', true, true);
+    const preventDefaultSpy = spyOn(event, 'preventDefault');
+
+    component.dragEnter(event);
+
+    expect(preventDefaultSpy).toHaveBeenCalled();
+  });
+
+  it('should unsubscribe from subscriptions on ngOnDestroy', () => {
+    spyOn(component.subscriptions, 'unsubscribe');
+    component.ngOnDestroy();
+    expect(component.subscriptions.unsubscribe).toHaveBeenCalled();
   });
 });
