@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "Demos-2324-Bart": {
+    "ADWEB2324-CharlotteKlokgieters-MaykevanBeek": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -67,10 +67,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "Demos-2324-Bart:build:production"
+              "buildTarget": "ADWEB2324-CharlotteKlokgieters-MaykevanBeek:build:production"
             },
             "development": {
-              "buildTarget": "Demos-2324-Bart:build:development"
+              "buildTarget": "ADWEB2324-CharlotteKlokgieters-MaykevanBeek:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -78,7 +78,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "Demos-2324-Bart:build"
+            "buildTarget": "ADWEB2324-CharlotteKlokgieters-MaykevanBeek:build"
           }
         },
         "test": {
