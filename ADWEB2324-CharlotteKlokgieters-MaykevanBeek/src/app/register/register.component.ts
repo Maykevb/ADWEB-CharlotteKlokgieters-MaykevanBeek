@@ -10,9 +10,7 @@ import {Subject, takeUntil} from "rxjs";
   styleUrl: './register.component.css'
 })
 export class RegisterComponent {
-  hide: boolean = true;
   registerForm!: FormGroup;
-  private unsubscribe$: Subject<void> = new Subject<void>();
 
   constructor(private authService: AuthService, private  router: Router, private formBuilder: FormBuilder) { }
 
@@ -26,9 +24,7 @@ export class RegisterComponent {
   registerWithEmailAndPass() {
     if (this.registerForm.valid) {
       const userData = this.registerForm.value;
-      this.authService.registerEmailAndPass(userData).pipe(
-        takeUntil(this.unsubscribe$)
-      ).subscribe(
+      this.authService.registerEmailAndPass(userData).subscribe(
         (userCredential) => {
           this.router.navigateByUrl('huishoudboekjes-overzicht');
         },
@@ -38,10 +34,5 @@ export class RegisterComponent {
         }
       );
     }
-  }
-
-  ngOnDestroy() {
-    this.unsubscribe$.next();
-    this.unsubscribe$.complete();
   }
 }

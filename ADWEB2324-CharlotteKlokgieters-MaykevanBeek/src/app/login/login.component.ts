@@ -9,7 +9,6 @@ import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-  hide: boolean = true;
   signInForm!: FormGroup;
 
   constructor(private authService: AuthService, private  router: Router, private formBuilder: FormBuilder) { }

@@ -1,6 +1,6 @@
 import { AngularFireAuth } from "@angular/fire/compat/auth";
 import { Injectable } from "@angular/core";
-import { catchError, Observable, throwError } from "rxjs";
+import {catchError, Observable, Subscription, throwError} from "rxjs";
 import { map } from "rxjs/operators";
 
 @Injectable({
