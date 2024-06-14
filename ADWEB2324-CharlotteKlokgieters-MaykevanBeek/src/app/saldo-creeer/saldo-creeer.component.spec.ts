@@ -2,7 +2,6 @@ import { TestBed, ComponentFixture } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { SaldoCreeerComponent } from './saldo-creeer.component';
 import { SaldoService } from '../saldo.service';
-import { Saldo } from '../models/saldo.model';
 import { AngularFireAuth } from "@angular/fire/compat/auth";
 import { AuthService } from "../auth.service";
 import { of } from "rxjs";

@@ -1,4 +1,4 @@
-import {Huishoudboekje} from "./huishoudboekje.model";
+import { Huishoudboekje } from "./huishoudboekje.model";
 
 describe('Huishoudboekje', () => {
   it('should create an instance', () => {

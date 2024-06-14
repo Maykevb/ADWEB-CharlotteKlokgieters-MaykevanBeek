@@ -22,13 +22,9 @@ class MockSaldoService {
     ]);
   }
 
-  updateSaldo(saldo: Saldo) {
-    // Mock implementation
-  }
+  updateSaldo(saldo: Saldo) { }
 
-  deleteSaldo(saldo: Saldo) {
-    // Mock implementation
-  }
+  deleteSaldo(saldo: Saldo) { }
 }
 
 describe('SaldoLijstComponent', () => {

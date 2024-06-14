@@ -58,7 +58,6 @@ describe('CategorieCreeerComponent', () => {
     component.onAdd();
 
     expect(mockService.addCategorie).not.toHaveBeenCalled();
-
     expect(component.categorie.naam).toEqual('');
   });
 

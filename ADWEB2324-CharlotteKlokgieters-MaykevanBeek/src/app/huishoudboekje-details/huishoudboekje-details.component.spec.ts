@@ -1,5 +1,5 @@
-import {TestBed, ComponentFixture, fakeAsync, tick} from '@angular/core/testing';
-import { FormsModule } from '@angular/forms'; // Voeg FormsModule toe
+import { TestBed, ComponentFixture } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { HuishoudboekjeDetailsComponent } from './huishoudboekje-details.component';
 import { CategorieCreeerComponent } from '../categorie-creeer/categorie-creeer.component';
@@ -8,11 +8,10 @@ import { CategorieLijstComponent } from '../categorie-lijst/categorie-lijst.comp
 import { SaldoLijstComponent } from '../saldo-lijst/saldo-lijst.component';
 import { AngularFireAuth, AngularFireAuthModule } from "@angular/fire/compat/auth";
 import { RouterTestingModule } from "@angular/router/testing";
-import {AuthService} from "../auth.service";
-import {of} from "rxjs";
+import { AuthService } from "../auth.service";
+import { of } from "rxjs";
 import { BaseChartDirective } from "ng2-charts";
-import {Huishoudboekje} from "../models/huishoudboekje.model";
-import {HuishoudboekjeService} from "../huishoudboekje.service";
+import { HuishoudboekjeService } from "../huishoudboekje.service";
 
 describe('HuishoudboekjeDetailsComponent', () => {
   let component: HuishoudboekjeDetailsComponent;

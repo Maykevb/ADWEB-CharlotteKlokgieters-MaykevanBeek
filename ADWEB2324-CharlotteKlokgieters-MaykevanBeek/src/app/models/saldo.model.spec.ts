@@ -1,5 +1,4 @@
-import {Saldo} from "./saldo.model";
-import {Categorie} from "./categorie.model";
+import { Saldo } from "./saldo.model";
 
 describe('Saldo', () => {
   it('should create an instance', () => {

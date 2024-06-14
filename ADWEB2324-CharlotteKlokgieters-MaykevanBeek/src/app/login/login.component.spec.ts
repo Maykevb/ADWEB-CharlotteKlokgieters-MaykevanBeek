@@ -62,7 +62,7 @@ describe('LoginComponent', () => {
     const userData = { email: 'test@test.com', password: '123456' };
     component.signInForm.setValue(userData);
 
-    mockAuthService.signInEmailAndPass.and.returnValue(of({})); // Mock successful sign-in
+    mockAuthService.signInEmailAndPass.and.returnValue(of({}));
 
     // Act
     component.signInWithEmailAndPass();

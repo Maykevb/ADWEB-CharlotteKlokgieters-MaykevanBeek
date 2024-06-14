@@ -1,7 +1,7 @@
 import { TestBed, ComponentFixture } from '@angular/core/testing';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
-import { HttpClientModule } from '@angular/common/http'; // Add if HttpClient is used
+import { HttpClientModule } from '@angular/common/http';
 import { HuidshoudboekjeLijstComponent } from './huidshoudboekje-lijst.component';
 import { HuishoudboekjeService } from '../huishoudboekje.service';
 import { AuthService } from '../auth.service';
@@ -25,7 +25,8 @@ describe('HuidshoudboekjeLijstComponent', () => {
   ];
 
   beforeEach(async () => {
-    mockHuishoudboekjeService = jasmine.createSpyObj('HuishoudboekjeService', ['getHuishoudboekjes', 'updateHuishoudboekje']);
+    mockHuishoudboekjeService = jasmine.createSpyObj('HuishoudboekjeService',
+      ['getHuishoudboekjes', 'updateHuishoudboekje']);
     mockAuthService = jasmine.createSpyObj('AuthService', ['signOut', 'getCurrentUserId']);
     mockRouter = jasmine.createSpyObj('Router', ['navigateByUrl']);
 
