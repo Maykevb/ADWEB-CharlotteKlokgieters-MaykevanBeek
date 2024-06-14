@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import {AuthService} from "../auth.service";
-import {Router} from "@angular/router";
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import { AuthService } from "../auth.service";
+import { Router } from "@angular/router";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 
 @Component({
   selector: 'app-login',
@@ -10,6 +10,7 @@ import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 })
 export class LoginComponent {
   signInForm!: FormGroup;
+  submitted: boolean = false;
 
   constructor(private authService: AuthService, private  router: Router, private formBuilder: FormBuilder) { }
 
@@ -21,11 +22,13 @@ export class LoginComponent {
   }
 
   signInWithEmailAndPass() {
+    this.submitted = true;
     if (this.signInForm.valid) {
       const userData = this.signInForm.value;
       this.authService.signInEmailAndPass(userData).subscribe(
         (userCredential) => {
           this.router.navigateByUrl('huishoudboekjes-overzicht');
+          this.submitted = false;
         },
         (error) => {
           console.error('Login error:', error);
