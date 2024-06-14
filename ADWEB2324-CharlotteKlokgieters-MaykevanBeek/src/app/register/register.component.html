@@ -2,10 +2,10 @@
   <p class="title">Registreer</p>
   <form [formGroup]="registerForm" (ngSubmit)="registerWithEmailAndPass()">
     <label>Email</label>
-    <input formControlName="email" type="text">
+    <input formControlName="email" type="email" placeholder="email">
 
     <label>Wachtwoord</label>
-    <input formControlName="password" [type]="hide ? 'password' : 'text'">
+    <input formControlName="password" type="password" placeholder="wachtwoord">
 
     <button type="submit" [disabled]="registerForm.invalid" class="btn btnFill">Registreer</button>
   </form>

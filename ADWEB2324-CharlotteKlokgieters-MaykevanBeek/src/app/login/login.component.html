@@ -2,10 +2,10 @@
   <p class="title">Log in</p>
   <form [formGroup]="signInForm" (ngSubmit)="signInWithEmailAndPass()">
     <label>Email</label>
-    <input formControlName="email" type="text">
+    <input formControlName="email" type="email" placeholder="email">
 
     <label>Wachtwoord</label>
-    <input formControlName="password" [type]="hide ? 'password' : 'text'">
+    <input formControlName="password" type="password" placeholder="wachtwoord">
 
     <button type="submit" [disabled]="signInForm.invalid" class="btn btnFill">Log in</button>
   </form>

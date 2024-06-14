@@ -1,6 +1,6 @@
 import { AngularFireAuth } from "@angular/fire/compat/auth";
 import { Injectable } from "@angular/core";
-import {catchError, Observable, throwError} from "rxjs";
+import { catchError, Observable, throwError } from "rxjs";
 import { map } from "rxjs/operators";
 
 @Injectable({
@@ -11,7 +11,6 @@ export class AuthService {
   constructor(private afs: AngularFireAuth) { }
 
   registerEmailAndPass(user: {email: string, password: string}) {
-    /*return this.afs.createUserWithEmailAndPassword(user.email, user.password)*/
     return new Observable((observer) => {
       this.afs.createUserWithEmailAndPassword(user.email, user.password)
         .then((userCredential) => {
@@ -25,7 +24,6 @@ export class AuthService {
   }
 
   signInEmailAndPass(user: {email: string, password: string}) {
-    /*return this.afs.signInWithEmailAndPassword(user.email, user.password)*/
     return new Observable((observer) => {
       this.afs.signInWithEmailAndPassword(user.email, user.password)
         .then((userCredential) => {
@@ -39,7 +37,6 @@ export class AuthService {
   }
 
   signOut() {
-    /*return this.afs.signOut();*/
     return new Observable((observer) => {
       this.afs.signOut()
         .then(() => {
