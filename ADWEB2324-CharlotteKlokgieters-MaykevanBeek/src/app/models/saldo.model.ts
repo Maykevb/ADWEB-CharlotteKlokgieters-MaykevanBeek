@@ -8,8 +8,9 @@ export class Saldo {
   datum: string;
   editMode: boolean;
   huishoudboekje: string | null | undefined;
+  ownerId: string | undefined;
 
-  constructor(id: string, tag: string) {
+  constructor(id: string, tag: string, ownerId: string | undefined) {
     this.id = id;
     this.tag = tag;
     // @ts-ignore
@@ -18,6 +19,7 @@ export class Saldo {
     this.datum = "";
     this.editMode = false;
     this.huishoudboekje = "";
+    this.ownerId = ownerId;
   }
 }
 

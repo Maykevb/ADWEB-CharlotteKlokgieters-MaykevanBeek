@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import {AuthService} from "../auth.service";
-import {Router} from "@angular/router";
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import { AuthService } from "../auth.service";
+import { Router } from "@angular/router";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 
 @Component({
   selector: 'app-register',
@@ -9,28 +9,32 @@ import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
   styleUrl: './register.component.css'
 })
 export class RegisterComponent {
-  hide: boolean = true;
   registerForm!: FormGroup;
+  submitted: boolean = false;
 
   constructor(private authService: AuthService, private  router: Router, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
     this.registerForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required]
+      password: ['', [Validators.required, Validators.minLength(6)]]
     })
   }
 
   registerWithEmailAndPass() {
+    this.submitted = true;
     if (this.registerForm.valid) {
       const userData = this.registerForm.value;
-      this.authService.registerEmailAndPass(userData)
-        .then((res: any) => {
+      this.authService.registerEmailAndPass(userData).subscribe(
+        (userCredential) => {
           this.router.navigateByUrl('huishoudboekjes-overzicht');
-        })
-        .catch((error: any) => {
-          console.error(error);
-        });
+          this.submitted = false;
+        },
+        (error) => {
+          console.error('Login error:', error);
+          alert('Registreren gefaald.');
+        }
+      );
     }
   }
 }

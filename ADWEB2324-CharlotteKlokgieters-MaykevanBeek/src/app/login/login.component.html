@@ -2,10 +2,18 @@
   <p class="title">Log in</p>
   <form [formGroup]="signInForm" (ngSubmit)="signInWithEmailAndPass()">
     <label>Email</label>
-    <input formControlName="email" type="text">
+    <input formControlName="email" type="email" placeholder="email">
+    <div class="validation" *ngIf="signInForm.controls['email'].invalid && signInForm.controls['email'].touched">
+      <small *ngIf="signInForm.controls['email'].errors?.['required']">!! Email is verplicht !!</small>
+      <small *ngIf="signInForm.controls['email'].errors?.['email']">!! Ongeldig email adres !!</small>
+    </div>
 
     <label>Wachtwoord</label>
-    <input formControlName="password" [type]="hide ? 'password' : 'text'">
+    <input formControlName="password" type="password" placeholder="wachtwoord">
+    <div class="validation" *ngIf="signInForm.controls['password'].invalid && signInForm.controls['password'].touched">
+      <small *ngIf="signInForm.controls['password'].errors?.['required']">!! Wachtwoord is verplicht !!</small>
+      <small *ngIf="signInForm.controls['password'].errors?.['minlength']">!! Wachtwoord moet minimaal 6 tekens lang zijn !!</small>
+    </div>
 
     <button type="submit" [disabled]="signInForm.invalid" class="btn btnFill">Log in</button>
   </form>

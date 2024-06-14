@@ -1,11 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subscriber } from 'rxjs';
-
 import { initializeApp } from "firebase/app";
-import { Firestore, getFirestore, onSnapshot, collection, doc, addDoc, deleteDoc, updateDoc } from "firebase/firestore";
-import {Huishoudboekje} from "./models/huishoudboekje.model";
-import {Saldo} from "./models/saldo.model";
-import {environment} from "../environments/environment";
+import { Firestore, getFirestore, onSnapshot, collection, doc, addDoc, updateDoc } from "firebase/firestore";
+import { Huishoudboekje } from "./models/huishoudboekje.model";
+import { environment } from "../environments/environment";
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +17,6 @@ export class HuishoudboekjeService {
 
     // Initialize Firebase
     const app = initializeApp(firebaseConfig);
-
     this.firestore = getFirestore(app);
   }
 
@@ -56,10 +53,6 @@ export class HuishoudboekjeService {
     const { id, ...object } = Object.assign({}, huishoudboekje);
     addDoc(collection(this.firestore, 'Huishoudboekjes'), object);
   }
-
-/*  deleteHuishoudboekje(huishoudboekje: Huishoudboekje) {
-    deleteDoc(doc(this.firestore, "Huishoudboekjes", huishoudboekje.id));
-  }*/
 
   updateHuishoudboekje(huishoudboekje: Huishoudboekje) {
     const { id, ...object } = Object.assign({}, huishoudboekje);

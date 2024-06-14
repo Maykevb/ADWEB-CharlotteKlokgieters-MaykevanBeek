@@ -10,6 +10,7 @@ import {Router} from "@angular/router";
   styleUrls: ['./huidshoudboekje-lijst.component.css']
 })
 export class HuidshoudboekjeLijstComponent {
+  ownerId: string | undefined = undefined;
   query: string = ""
   activeTab: string = 'active';
   huishoudboekjes: Huishoudboekje[] = [];
@@ -28,6 +29,9 @@ export class HuidshoudboekjeLijstComponent {
   ngOnInit(): void {
     this.service.getHuishoudboekjes().subscribe(huishoudboekjes => {
       this.huishoudboekjes = huishoudboekjes;
+    });
+    this.authService.getCurrentUserId().subscribe(userId => {
+      this.ownerId = userId;
     });
   }
 
@@ -50,12 +54,18 @@ export class HuidshoudboekjeLijstComponent {
   }
 
   signOut() {
-    this.authService.signOut().then((res: any) => {
-      this.router.navigateByUrl('login');
-    }).catch((error: any) => {
-      console.error(error);
-    })
+    this.authService.signOut().subscribe(
+      () => {
+        this.router.navigateByUrl('login');
+      },
+      (error) => {
+        console.error('Sign-out error:', error);
+        alert('Uitloggen gefaald. Probeer opnieuw a.u.b.');
+      }
+    );
   }
+
+  protected readonly undefined = undefined;
 }
 
 

@@ -2,10 +2,18 @@
   <p class="title">Registreer</p>
   <form [formGroup]="registerForm" (ngSubmit)="registerWithEmailAndPass()">
     <label>Email</label>
-    <input formControlName="email" type="text">
+    <input formControlName="email" type="email" placeholder="email">
+    <div class="validation" *ngIf="registerForm.controls['email'].invalid && registerForm.controls['email'].touched">
+      <small *ngIf="registerForm.controls['email'].errors?.['required']">!! Email is verplicht !!</small>
+      <small *ngIf="registerForm.controls['email'].errors?.['email']">!! Ongeldig email adres !!</small>
+    </div>
 
     <label>Wachtwoord</label>
-    <input formControlName="password" [type]="hide ? 'password' : 'text'">
+    <input formControlName="password" type="password" placeholder="wachtwoord">
+    <div class="validation" *ngIf="registerForm.controls['password'].invalid && registerForm.controls['password'].touched">
+      <small *ngIf="registerForm.controls['password'].errors?.['required']">!! Wachtwoord is verplicht !!</small>
+      <small *ngIf="registerForm.controls['password'].errors?.['minlength']">!! Wachtwoord moet minimaal 6 tekens lang zijn !!</small>
+    </div>
 
     <button type="submit" [disabled]="registerForm.invalid" class="btn btnFill">Registreer</button>
   </form>
