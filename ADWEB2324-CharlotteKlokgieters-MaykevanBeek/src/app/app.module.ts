@@ -43,7 +43,6 @@ import { RegisterComponent } from './register/register.component';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

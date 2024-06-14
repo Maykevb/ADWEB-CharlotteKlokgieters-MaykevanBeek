@@ -20,16 +20,13 @@ export class HuidshoudboekjeLijstComponent {
     this.activeTab = tab;
   }
 
-  constructor(private service: HuishoudboekjeService, private authService: AuthService, private router: Router) {
-   /* service.getHuishoudboekjes().subscribe(huishoudboekjes => {
-      this.huishoudboekjes = huishoudboekjes;
-    });*/
-  }
+  constructor(private service: HuishoudboekjeService, private authService: AuthService, private router: Router) {  }
 
   ngOnInit(): void {
     this.service.getHuishoudboekjes().subscribe(huishoudboekjes => {
       this.huishoudboekjes = huishoudboekjes;
     });
+
     this.authService.getCurrentUserId().subscribe(userId => {
       this.ownerId = userId;
     });

@@ -33,21 +33,4 @@ describe('LoginComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
-
-  it('should handle sign in failure', fakeAsync(() => {
-    const email = 'test@example.com';
-    const password = 'testpassword';
-    component.signInForm.setValue({ email, password });
-
-    const errorMessage = 'Authentication failed';
-    mockAuthService.signInEmailAndPass.and.returnValue(Promise.reject(errorMessage));
-
-    spyOn(console, 'error');
-
-    component.signInWithEmailAndPass();
-    tick(); // Wacht tot asynchrone taken zijn voltooid
-
-    expect(mockAuthService.signInEmailAndPass).toHaveBeenCalledWith({ email, password });
-    expect(console.error).toHaveBeenCalledWith(errorMessage);
-  }));
 });

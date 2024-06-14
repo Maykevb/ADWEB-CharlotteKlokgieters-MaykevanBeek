@@ -31,7 +31,7 @@ describe('SaldoCreeerComponent', () => {
   });
 
   it('should initialize saldo and submitted correctly', () => {
-    expect(component.saldo).toEqual(new Saldo('', ''));
+    expect(component.saldo).toEqual(new Saldo('', '', ''));
     expect(component.submitted).toBeFalse();
   });
 });

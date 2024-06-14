@@ -10,6 +10,7 @@ import { of } from 'rxjs';
 import { Huishoudboekje } from '../models/huishoudboekje.model';
 import { HuishoudboekjeCreeerComponent } from "../huishoudboekje-creeer/huishoudboekje-creeer.component";
 import { HuishoudboekjeZoekPipe } from "../huishoudboekje-zoek.pipe";
+import { AngularFireAuthModule } from "@angular/fire/compat/auth";
 
 describe('HuidshoudboekjeLijstComponent', () => {
   let component: HuidshoudboekjeLijstComponent;
@@ -19,13 +20,13 @@ describe('HuidshoudboekjeLijstComponent', () => {
   let mockRouter: jasmine.SpyObj<Router>;
 
   const mockHuishoudboekjes: Huishoudboekje[] = [
-    { id: '1', naam: 'Testboekje 1', omschrijving: 'Dit is testboekje 1', gearchiveerd: false, editMode: false },
-    { id: '2', naam: 'Testboekje 2', omschrijving: 'Dit is testboekje 2', gearchiveerd: true, editMode: false }
+    { id: '1', naam: 'Testboekje 1', omschrijving: 'Dit is testboekje 1', gearchiveerd: false, editMode: false, ownerId: '1' },
+    { id: '2', naam: 'Testboekje 2', omschrijving: 'Dit is testboekje 2', gearchiveerd: true, editMode: false, ownerId: '1'}
   ];
 
   beforeEach(async () => {
     mockHuishoudboekjeService = jasmine.createSpyObj('HuishoudboekjeService', ['getHuishoudboekjes', 'updateHuishoudboekje']);
-    mockAuthService = jasmine.createSpyObj('AuthService', ['signOut']);
+    mockAuthService = jasmine.createSpyObj('AuthService', ['signOut', 'getCurrentUserId']);
     mockRouter = jasmine.createSpyObj('Router', ['navigateByUrl']);
 
     await TestBed.configureTestingModule({
@@ -39,7 +40,8 @@ describe('HuidshoudboekjeLijstComponent', () => {
         ReactiveFormsModule,
         RouterTestingModule,
         RouterModule,
-        HttpClientModule
+        HttpClientModule,
+        AngularFireAuthModule
       ],
       providers: [
         { provide: HuishoudboekjeService, useValue: mockHuishoudboekjeService },
@@ -54,6 +56,7 @@ describe('HuidshoudboekjeLijstComponent', () => {
 
     // Configure mock service behavior
     mockHuishoudboekjeService.getHuishoudboekjes.and.returnValue(of(mockHuishoudboekjes));
+    mockAuthService.getCurrentUserId.and.returnValue(of('mockUserId'));
 
     // Detect changes and initialize component
     fixture.detectChanges();

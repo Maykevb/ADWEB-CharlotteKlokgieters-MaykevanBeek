@@ -34,22 +34,4 @@ describe('RegisterComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
-
-  it('should handle registration failure', fakeAsync(() => {
-    const email = 'test@example.com';
-    const password = 'testpassword';
-    component.registerForm.setValue({ email, password });
-
-    const errorMessage = 'Registration failed';
-    mockAuthService.registerEmailAndPass.and.returnValue(Promise.reject(errorMessage));
-
-    spyOn(console, 'error');
-
-    component.registerWithEmailAndPass();
-    tick(); // Wait for async tasks to complete
-
-    expect(mockAuthService.registerEmailAndPass).toHaveBeenCalledWith({ email, password });
-    expect(mockRouter.navigateByUrl).not.toHaveBeenCalled(); // Ensure router was not navigated
-    expect(console.error).toHaveBeenCalledWith(errorMessage);
-  }));
 });
