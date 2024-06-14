@@ -1,0 +1,40 @@
+<div class="categorie-list">
+  <h1>Categorieën</h1>
+  <h2>
+    <div>Naam</div>
+    <div class="budget-title">Budget</div>
+    <div class="end-title">Eind datum</div>
+  </h2>
+  <div *ngFor="let categorie of categorieen" class="categorie-item" droppable="true" (dragover)="dragOver($event)"
+       (dragenter)="dragEnter($event)" (drop)="drop($event, categorie)">
+    <div *ngIf="!categorie.editMode" class="mode">
+      <ul>
+        <div>{{ categorie.naam }}</div>
+        <div *ngIf="categorie.budget != null && (categorie.huidigBudget > (categorie.budget / 2))"
+             id="green">€{{ categorie.huidigBudget }} / €{{ categorie.budget }}</div>
+        <div *ngIf="categorie.budget != null && (categorie.huidigBudget <= (categorie.budget / 2)) &&
+             (categorie.huidigBudget > 1)"
+             id="orange">€{{ categorie.huidigBudget }} / €{{ categorie.budget }}</div>
+        <div *ngIf="categorie.budget != null && (categorie.huidigBudget <= 0)"
+             id="red">€{{ categorie.huidigBudget }} / €{{ categorie.budget }}</div>
+        <div>{{ categorie.eindDatum | date:'dd-MM-yyyy'}}</div>
+      </ul>
+      <div class="button-container">
+        <button (click)="toggleEdit(categorie)">✎</button>
+        <button (click)="onDelete(categorie)" id="delete">-</button>
+      </div>
+    </div>
+    <div *ngIf="categorie.editMode" class="mode">
+      <ul>
+        <input id="naam-{{categorie.id}}" [(ngModel)]="categorie.naam" placeholder="naam" class="edit-input">
+        <input id="budget-{{categorie.id}}" [(ngModel)]="categorie.budget" placeholder="budget" type="number" class="edit-input">
+        <input id="eind_datum-{{categorie.id}}" [(ngModel)]="categorie.eindDatum" placeholder="eind datum" type="date" class="edit-input">
+      </ul>
+      <div class="button-container" id="edit-buttons">
+        <button (click)="onSave(categorie)">🖫</button>
+      </div>
+    </div>
+
+    <span *ngIf="submitted && !categorie.naam || submitted && !categorie.budget" class="error">!! Naam en budget zijn verplicht !!</span>
+  </div>
+</div>
