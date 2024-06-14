@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {Huishoudboekje} from "../models/huishoudboekje.model";
 import {HuishoudboekjeService} from "../huishoudboekje.service";
 import {AuthService} from "../auth.service";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-huishoudboekje-creeer',
@@ -13,11 +14,15 @@ export class HuishoudboekjeCreeerComponent {
   huishoudboekje: Huishoudboekje = new Huishoudboekje("", "", "", this.ownerId);
   submitted = false;
 
+  private subscriptions: Subscription = new Subscription();
+
   constructor(private service: HuishoudboekjeService, private  authService: AuthService) {
-    this.authService.getCurrentUserId().subscribe(userId => {
+    const authSub = this.authService.getCurrentUserId().subscribe(userId => {
       this.ownerId = userId;
       this.huishoudboekje = new Huishoudboekje("", "", "", this.ownerId);
     });
+
+    this.subscriptions.add(authSub)
   }
 
   onAdd() {
@@ -28,5 +33,9 @@ export class HuishoudboekjeCreeerComponent {
       this.huishoudboekje = new Huishoudboekje("", "", "", this.ownerId);
       this.submitted = false
     }
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.unsubscribe();
   }
 }

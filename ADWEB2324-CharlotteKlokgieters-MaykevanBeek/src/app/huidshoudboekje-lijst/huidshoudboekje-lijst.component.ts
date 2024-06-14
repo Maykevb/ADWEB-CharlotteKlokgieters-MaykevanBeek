@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { Huishoudboekje } from '../models/huishoudboekje.model';
 import { HuishoudboekjeService } from '../huishoudboekje.service';
-import {AuthService} from "../auth.service";
-import {Router} from "@angular/router";
+import { AuthService } from "../auth.service";
+import { Router } from "@angular/router";
+import { Subscription } from "rxjs";
 
 @Component({
   selector: 'app-huidshoudboekje-lijst',
@@ -16,17 +17,22 @@ export class HuidshoudboekjeLijstComponent {
   huishoudboekjes: Huishoudboekje[] = [];
   submitted = false;
 
+  private subscriptions: Subscription = new Subscription();
+
   setActiveTab(tab: string) {
     this.activeTab = tab;
   }
 
   constructor(private service: HuishoudboekjeService, private authService: AuthService, private router: Router) {
-    service.getHuishoudboekjes().subscribe(huishoudboekjes => {
+    const huishoudSub = service.getHuishoudboekjes().subscribe(huishoudboekjes => {
       this.huishoudboekjes = huishoudboekjes;
     });
-    this.authService.getCurrentUserId().subscribe(userId => {
+    const authSub = this.authService.getCurrentUserId().subscribe(userId => {
       this.ownerId = userId;
     });
+
+    this.subscriptions.add(huishoudSub);
+    this.subscriptions.add(authSub);
   }
 
   toggleEdit(huishoudboekje: Huishoudboekje) {
@@ -48,7 +54,7 @@ export class HuidshoudboekjeLijstComponent {
   }
 
   signOut() {
-    this.authService.signOut().subscribe(
+    const authSub = this.authService.signOut().subscribe(
       () => {
         this.router.navigateByUrl('login');
       },
@@ -57,6 +63,12 @@ export class HuidshoudboekjeLijstComponent {
         alert('Uitloggen gefaald. Probeer opnieuw a.u.b.');
       }
     );
+
+    this.subscriptions.add(authSub)
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.unsubscribe();
   }
 
   protected readonly undefined = undefined;

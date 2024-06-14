@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Saldo } from "../models/saldo.model";
 import { SaldoService } from "../saldo.service";
 import { Chart, registerables, ChartConfiguration, ChartOptions } from "chart.js";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-saldo-lijst',
@@ -21,6 +22,7 @@ export class SaldoLijstComponent implements OnInit {
   stopScrolling = true;
 
   @Input() huishoudboekje: string | null | undefined;
+  private subscriptions: Subscription = new Subscription();
 
   public ChartData: ChartConfiguration<'line'>['data'] = {
     labels: [],
@@ -67,7 +69,7 @@ export class SaldoLijstComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.service.getInkomsten(this.huishoudboekje).subscribe(saldo => {
+    const inkomSub = this.service.getInkomsten(this.huishoudboekje).subscribe(saldo => {
       this.inkomsten = saldo;
       this.filterByMonth();
       this.generateChartData();
@@ -75,7 +77,7 @@ export class SaldoLijstComponent implements OnInit {
       this.getTotalSaldo();
     });
 
-    this.service.getUitgaven(this.huishoudboekje).subscribe(saldo => {
+    const uitgaSub = this.service.getUitgaven(this.huishoudboekje).subscribe(saldo => {
       this.uitgaven = saldo;
       this.filterByMonth();
       this.generateChartData();
@@ -83,6 +85,9 @@ export class SaldoLijstComponent implements OnInit {
       this.getTotalSaldo();
       this.generateBarChartData();
     });
+
+    this.subscriptions.add(inkomSub);
+    this.subscriptions.add(uitgaSub);
   }
 
   generateChartData() {
@@ -246,5 +251,9 @@ export class SaldoLijstComponent implements OnInit {
 
   getRandomColor(): string {
     return '#' + Math.floor(Math.random() * 16777215).toString(16);
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.unsubscribe();
   }
 }

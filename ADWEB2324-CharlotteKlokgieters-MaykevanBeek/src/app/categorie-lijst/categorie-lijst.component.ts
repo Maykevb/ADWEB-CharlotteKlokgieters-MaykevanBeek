@@ -2,6 +2,7 @@ import {Component, Input} from '@angular/core';
 import {Categorie} from "../models/categorie.model";
 import {CategorieService} from "../categorie.service";
 import {SaldoService} from "../saldo.service";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-categorie-lijst',
@@ -14,15 +15,18 @@ export class CategorieLijstComponent {
   submitted = false;
 
   @Input() huishoudboekje: string | null | undefined;
+  private subscriptions: Subscription = new Subscription();
 
   constructor(private service: CategorieService, saldoService: SaldoService) {
     this.saldoService = saldoService;
   }
 
   ngOnInit() {
-    this.service.getCategorieen(this.huishoudboekje).subscribe(categorieen => {
+    const catSub = this.service.getCategorieen(this.huishoudboekje).subscribe(categorieen => {
       this.categorieen = categorieen;
     });
+
+    this.subscriptions.add(catSub);
   }
 
   toggleEdit(categorie: Categorie) {
@@ -59,6 +63,10 @@ export class CategorieLijstComponent {
     let oldCategorie = draggedItem.categorie;
     draggedItem.categorie = categorie;
     this.saldoService.updateCategorieOfSaldo(draggedItem, oldCategorie);
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.unsubscribe();
   }
 
   protected readonly undefined = undefined;
