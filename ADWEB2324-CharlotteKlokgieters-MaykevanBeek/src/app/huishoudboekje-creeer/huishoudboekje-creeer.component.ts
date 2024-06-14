@@ -13,7 +13,9 @@ export class HuishoudboekjeCreeerComponent {
   huishoudboekje: Huishoudboekje = new Huishoudboekje("", "", "", this.ownerId);
   submitted = false;
 
-  constructor(private service: HuishoudboekjeService, private  authService: AuthService) {
+  constructor(private service: HuishoudboekjeService, private  authService: AuthService) {  }
+
+  ngOnInit(): void {
     this.authService.getCurrentUserId().subscribe(userId => {
       this.ownerId = userId;
       this.huishoudboekje = new Huishoudboekje("", "", "", this.ownerId);

@@ -18,7 +18,9 @@ export class CategorieCreeerComponent {
   @Input() huishoudboekje: string | null | undefined;
   categorieenSubscription: Subscription | undefined;
 
-  constructor(private service: CategorieService, private authService: AuthService) {
+  constructor(private service: CategorieService, private authService: AuthService) {  }
+
+  ngOnInit(): void {
     this.authService.getCurrentUserId().subscribe(userId => {
       this.ownerId = userId;
       this.categorie = new Categorie("", "", this.ownerId);

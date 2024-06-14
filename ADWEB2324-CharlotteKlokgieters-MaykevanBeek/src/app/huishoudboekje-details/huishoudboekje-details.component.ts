@@ -16,8 +16,10 @@ export class HuishoudboekjeDetailsComponent {
 
   constructor(private route: ActivatedRoute, private  authService: AuthService, private  huishoudService: HuishoudboekjeService) {
     this.huidigHuishoudboekjeID = this.route.snapshot.paramMap.get('id');
+  }
 
-    if (this.huidigHuishoudboekjeID != null) {
+  ngOnInit(): void {
+        if (this.huidigHuishoudboekjeID != null) {
       this.huishoudService.getHuishoudboekje(this.huidigHuishoudboekjeID).subscribe(owner => {
         this.huidigHuishoudboekjeOwner = owner?.ownerId
       })
