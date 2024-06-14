@@ -12,9 +12,7 @@ class MockCategorieService {
     return of([]);
   }
 
-  addCategorie(categorie: any) {
-    // Mock implementation
-  }
+  addCategorie = jasmine.createSpy('addCategorie');
 }
 
 describe('CategorieCreeerComponent', () => {
@@ -40,7 +38,7 @@ describe('CategorieCreeerComponent', () => {
         { provide: AngularFireAuth, useValue: {} },
         { provide: AuthService, useValue: mockAuthService }
       ],
-      schemas: [NO_ERRORS_SCHEMA]  // Ignore unrecognized elements and attributes
+      schemas: [NO_ERRORS_SCHEMA]
     }).compileComponents();
   });
 
@@ -52,5 +50,26 @@ describe('CategorieCreeerComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should not add category when name is empty', () => {
+    component.categorie.naam = '';
+
+    component.onAdd();
+
+    expect(mockService.addCategorie).not.toHaveBeenCalled();
+
+    expect(component.categorie.naam).toEqual('');
+  });
+
+  it('should add category when name is not empty', async () => {
+    component.categorie.naam = 'test';
+
+    mockService.addCategorie.and.returnValue(Promise.resolve());
+
+    component.onAdd();
+
+    expect(mockService.addCategorie).toHaveBeenCalled();
+    expect(component.categorie.naam).toEqual('test');
   });
 });

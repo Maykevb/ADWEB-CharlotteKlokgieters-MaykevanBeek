@@ -1,8 +1,8 @@
-import {Component, Input} from '@angular/core';
-import {Categorie} from "../models/categorie.model";
-import {CategorieService} from "../categorie.service";
-import {Subscription} from "rxjs";
-import {AuthService} from "../auth.service";
+import { Component, Input } from '@angular/core';
+import { Categorie } from "../models/categorie.model";
+import { CategorieService } from "../categorie.service";
+import { Subscription } from "rxjs";
+import { AuthService } from "../auth.service";
 
 @Component({
   selector: 'app-categorie-creeer',
@@ -16,36 +16,43 @@ export class CategorieCreeerComponent {
   bestaatAl: boolean = false;
 
   @Input() huishoudboekje: string | null | undefined;
-  categorieenSubscription: Subscription | undefined;
+  private subscriptions: Subscription = new Subscription();
 
-  constructor(private service: CategorieService, private authService: AuthService) {  }
-
-  ngOnInit(): void {
-    this.authService.getCurrentUserId().subscribe(userId => {
+  constructor(private service: CategorieService, private authService: AuthService) {
+    const authSub = this.authService.getCurrentUserId().subscribe(userId => {
       this.ownerId = userId;
       this.categorie = new Categorie("", "", this.ownerId);
     });
+
+    this.subscriptions.add(authSub);
   }
 
   onAdd() {
     this.submitted = true;
     if (this.categorie.naam) {
-      this.categorieenSubscription = this.service.getCategorieen(this.huishoudboekje).subscribe(categorieen => {
+      const catSub = this.service.getCategorieen(this.huishoudboekje).subscribe(categorieen => {
         const categorieExists = categorieen.some(categorie => categorie.naam === this.categorie.naam);
         if (categorieExists) {
           this.bestaatAl = true;
         } else {
-          if (this.categorie.eindDatum === undefined) {
+          if (this.categorie.eindDatum === undefined || this.categorie.eindDatum == undefined || !this.categorie.eindDatum) {
             this.categorie.eindDatum = null;
           }
 
           this.categorie.huishoudboekje = this.huishoudboekje;
-          this.service.addCategorie(this.categorie);
-          this.categorie = new Categorie("", "", this.ownerId);
-          this.submitted = false;
           this.bestaatAl = false;
+          this.submitted = false;
+          this.service.addCategorie(this.categorie).then(() => {
+            this.categorie = new Categorie("", "", this.ownerId);
+          });
         }
       });
+
+      this.subscriptions.add(catSub);
     }
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.unsubscribe();
   }
 }

@@ -71,4 +71,22 @@ describe('HuishoudboekjeCreeerComponent', () => {
     expect(mockHuishoudboekjeService.addHuishoudboekje).not.toHaveBeenCalled();
     expect(component.huishoudboekje.naam).toEqual('');
   });
+
+  it('should initialize ownerId and huishoudboekje correctly on ngOnInit', () => {
+    const userId = 'test-user-id';
+
+    // Simulate successful getCurrentUserId() call
+    mockAuthService.getCurrentUserId.and.returnValue(of(userId));
+
+    // Trigger ngOnInit
+    component.ngOnInit();
+    fixture.detectChanges();
+
+    expect(component.ownerId).toEqual(userId);
+    expect(component.huishoudboekje).toEqual(jasmine.objectContaining({
+      naam: '',
+      omschrijving: '',
+      ownerId: userId
+    }));
+  });
 });
