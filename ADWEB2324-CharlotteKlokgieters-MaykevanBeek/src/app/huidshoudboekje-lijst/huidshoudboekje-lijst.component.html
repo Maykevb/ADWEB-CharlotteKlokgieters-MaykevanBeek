@@ -31,7 +31,8 @@
           <label for="naam-{{huishoudboekje.id}}">Naam</label>
           <input id="naam-{{huishoudboekje.id}}" [(ngModel)]="huishoudboekje.naam" placeholder="Naam" class="edit-input">
           <label for="omschrijving-{{huishoudboekje.id}}">Omschrijving</label>
-          <input id="omschrijving-{{huishoudboekje.id}}" [(ngModel)]="huishoudboekje.omschrijving" placeholder="Omschrijving" class="edit-input">
+          <input id="omschrijving-{{huishoudboekje.id}}" [(ngModel)]="huishoudboekje.omschrijving"
+                 placeholder="Omschrijving" class="edit-input">
           <div class="button-container">
             <button (click)="onSave(huishoudboekje)">Opslaan</button>
           </div>

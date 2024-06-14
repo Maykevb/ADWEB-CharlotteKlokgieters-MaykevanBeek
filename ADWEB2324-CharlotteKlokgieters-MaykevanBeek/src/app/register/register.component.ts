@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { AuthService } from "../auth.service";
 import { Router } from "@angular/router";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import {Subscription} from "rxjs";
+import { Subscription } from "rxjs";
 
 @Component({
   selector: 'app-register',

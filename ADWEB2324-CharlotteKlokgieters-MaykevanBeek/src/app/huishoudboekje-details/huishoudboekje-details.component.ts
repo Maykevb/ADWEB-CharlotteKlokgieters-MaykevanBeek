@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
-import {AuthService} from "../auth.service";
-import {HuishoudboekjeService} from "../huishoudboekje.service";
-import {Subscription} from "rxjs";
+import { ActivatedRoute } from "@angular/router";
+import { AuthService } from "../auth.service";
+import { HuishoudboekjeService } from "../huishoudboekje.service";
+import { Subscription } from "rxjs";
 
 @Component({
   selector: 'app-huishoudboekje-details',
@@ -17,11 +17,13 @@ export class HuishoudboekjeDetailsComponent {
 
   private subscriptions: Subscription = new Subscription();
 
-  constructor(private route: ActivatedRoute, private  authService: AuthService, private  huishoudService: HuishoudboekjeService) {
+  constructor(private route: ActivatedRoute, private  authService: AuthService,
+              private huishoudService: HuishoudboekjeService) {
     this.huidigHuishoudboekjeID = this.route.snapshot.paramMap.get('id');
 
     if (this.huidigHuishoudboekjeID != null) {
-      const huishoudSub = this.huishoudService.getHuishoudboekje(this.huidigHuishoudboekjeID).subscribe(owner => {
+      const huishoudSub = this.huishoudService.getHuishoudboekje(this.huidigHuishoudboekjeID)
+        .subscribe(owner => {
         this.huidigHuishoudboekjeOwner = owner?.ownerId
       })
       const authSub = this.authService.getCurrentUserId().subscribe(userId => {

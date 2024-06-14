@@ -1,8 +1,8 @@
-import {Component, Input} from '@angular/core';
-import {Categorie} from "../models/categorie.model";
-import {CategorieService} from "../categorie.service";
-import {SaldoService} from "../saldo.service";
-import {Subscription} from "rxjs";
+import { Component, Input } from '@angular/core';
+import { Categorie } from "../models/categorie.model";
+import { CategorieService } from "../categorie.service";
+import { SaldoService } from "../saldo.service";
+import { Subscription } from "rxjs";
 
 @Component({
   selector: 'app-categorie-lijst',

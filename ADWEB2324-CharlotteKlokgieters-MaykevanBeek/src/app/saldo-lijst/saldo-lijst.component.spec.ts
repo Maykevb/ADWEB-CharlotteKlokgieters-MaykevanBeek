@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { SaldoLijstComponent } from './saldo-lijst.component';
 
 describe('SaldoLijstComponent', () => {
@@ -11,7 +10,7 @@ describe('SaldoLijstComponent', () => {
       declarations: [SaldoLijstComponent]
     })
     .compileComponents();
-    
+
     fixture = TestBed.createComponent(SaldoLijstComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

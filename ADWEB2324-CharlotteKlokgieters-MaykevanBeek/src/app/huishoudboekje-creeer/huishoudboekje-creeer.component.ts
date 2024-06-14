@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import {Huishoudboekje} from "../models/huishoudboekje.model";
-import {HuishoudboekjeService} from "../huishoudboekje.service";
-import {AuthService} from "../auth.service";
-import {Subscription} from "rxjs";
+import { Huishoudboekje } from "../models/huishoudboekje.model";
+import { HuishoudboekjeService } from "../huishoudboekje.service";
+import { AuthService } from "../auth.service";
+import { Subscription } from "rxjs";
 
 @Component({
   selector: 'app-huishoudboekje-creeer',

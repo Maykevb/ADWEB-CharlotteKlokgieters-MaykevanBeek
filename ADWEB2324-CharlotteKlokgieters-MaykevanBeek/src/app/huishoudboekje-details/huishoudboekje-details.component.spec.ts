@@ -1,7 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { HuishoudboekjeDetailsComponent } from './huishoudboekje-details.component';
-import { CategorieCreeerComponent } from '../categorie-creeer/categorie-creeer.component';
 
 describe('HuishoudboekjeDetailsComponent', () => {
   let component: HuishoudboekjeDetailsComponent;

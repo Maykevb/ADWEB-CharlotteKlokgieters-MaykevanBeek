@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Saldo } from "../models/saldo.model";
 import { SaldoService } from "../saldo.service";
 import { Chart, registerables, ChartConfiguration, ChartOptions } from "chart.js";
-import {Subscription} from "rxjs";
+import { Subscription } from "rxjs";
 
 @Component({
   selector: 'app-saldo-lijst',
