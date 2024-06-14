@@ -37,20 +37,25 @@ describe('HuishoudboekjeCreeerComponent', () => {
   });
 
   it('should create the component', () => {
+    // Assert
     expect(component).toBeTruthy();
   });
 
   it('should initialize huishoudboekje correctly', () => {
+    // Assert
     expect(component.huishoudboekje).toBeDefined();
     expect(component.huishoudboekje.naam).toEqual('');
     expect(component.huishoudboekje.omschrijving).toEqual('');
   });
 
   it('should add huishoudboekje when naam is not empty', () => {
+    // Arrange
     component.huishoudboekje.naam = 'Test Huishoudboekje';
 
+    // Act
     component.onAdd();
 
+    // Assert
     const expectedHuishoudboekje = {
       id: '',
       naam: 'Test Huishoudboekje',
@@ -65,22 +70,27 @@ describe('HuishoudboekjeCreeerComponent', () => {
   });
 
   it('should not add huishoudboekje when naam is empty', () => {
+    // Arrange
     component.huishoudboekje.naam = '';
 
+    // Act
     component.onAdd();
 
+    // Assert
     expect(mockHuishoudboekjeService.addHuishoudboekje).not.toHaveBeenCalled();
     expect(component.huishoudboekje.naam).toEqual('');
   });
 
   it('should initialize ownerId and huishoudboekje correctly on ngOnInit', () => {
+    // Arrange
     const userId = 'test-user-id';
-
     mockAuthService.getCurrentUserId.and.returnValue(of(userId));
 
+    // Act
     component.ngOnInit();
     fixture.detectChanges();
 
+    // Assert
     expect(component.ownerId).toEqual(userId);
     expect(component.huishoudboekje).toEqual(jasmine.objectContaining({
       naam: '',

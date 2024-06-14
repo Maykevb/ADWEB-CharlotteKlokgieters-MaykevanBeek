@@ -54,6 +54,7 @@ describe('HuishoudboekjeDetailsComponent', () => {
   });
 
   it('should create the component', () => {
+    // Assert
     expect(component).toBeTruthy();
   });
 });
