@@ -5,7 +5,6 @@ import { CategorieService } from '../categorie.service';
 import { SaldoService } from "../saldo.service";
 import { of } from "rxjs";
 import { FormsModule } from '@angular/forms';
-import {Saldo} from "../models/saldo.model";
 
 describe('CategorieLijstComponent', () => {
   let component: CategorieLijstComponent;
