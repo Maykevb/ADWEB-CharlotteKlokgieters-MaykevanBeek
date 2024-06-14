@@ -33,15 +33,16 @@ export class CategorieCreeerComponent {
         if (categorieExists) {
           this.bestaatAl = true;
         } else {
-          if (this.categorie.eindDatum === undefined) {
+          if (!this.categorie.eindDatum) {
             this.categorie.eindDatum = null;
           }
 
           this.categorie.huishoudboekje = this.huishoudboekje;
-          this.service.addCategorie(this.categorie);
-          this.categorie = new Categorie("", "", this.ownerId);
-          this.submitted = false;
           this.bestaatAl = false;
+          this.submitted = false;
+          this.service.addCategorie(this.categorie).then(() => {
+            this.categorie = new Categorie("", "", this.ownerId);
+          });
         }
       });
     }

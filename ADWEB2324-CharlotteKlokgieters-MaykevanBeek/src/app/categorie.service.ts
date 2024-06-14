@@ -56,7 +56,7 @@ export class CategorieService {
     categorie.budget = parseFloat(categorie.budget)
     categorie.huidigBudget = categorie.budget
     const { id, ...object } = Object.assign({}, categorie);
-    addDoc(collection(this.firestore, 'Categorieen'), object);
+    return addDoc(collection(this.firestore, 'Categorieen'), object);
   }
 
 
