@@ -14,7 +14,8 @@ describe('CategorieLijstComponent', () => {
   let mockSaldoService: jasmine.SpyObj<SaldoService>;
 
   beforeEach(async () => {
-    mockCategorieService = jasmine.createSpyObj('CategorieService', ['getCategorieen', 'updateCategorie', 'deleteCategorie']);
+    mockCategorieService = jasmine.createSpyObj('CategorieService',
+      ['getCategorieen', 'updateCategorie', 'deleteCategorie']);
     mockSaldoService = jasmine.createSpyObj('SaldoService', ['updateCategorieOfSaldo']);
 
     mockCategorieService.getCategorieen.and.returnValue(of([]));

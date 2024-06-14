@@ -61,7 +61,7 @@ describe('RegisterComponent', () => {
     component.registerWithEmailAndPass();
 
     // Assert
-    expect(component.submitted).toBeTrue(); // submitted should remain true
+    expect(component.submitted).toBeTrue();
     expect(mockAuthService.registerEmailAndPass).not.toHaveBeenCalled();
     expect(mockRouter.navigateByUrl).not.toHaveBeenCalled();
   });

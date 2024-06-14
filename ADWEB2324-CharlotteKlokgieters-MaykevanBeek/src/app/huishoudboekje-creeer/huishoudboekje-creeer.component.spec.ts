@@ -59,7 +59,8 @@ describe('HuishoudboekjeCreeerComponent', () => {
       ownerId: 'test-user-id'
     };
 
-    expect(mockHuishoudboekjeService.addHuishoudboekje).toHaveBeenCalledWith(jasmine.objectContaining(expectedHuishoudboekje));
+    expect(mockHuishoudboekjeService.addHuishoudboekje)
+      .toHaveBeenCalledWith(jasmine.objectContaining(expectedHuishoudboekje));
     expect(component.huishoudboekje.naam).toEqual('');
   });
 
@@ -75,10 +76,8 @@ describe('HuishoudboekjeCreeerComponent', () => {
   it('should initialize ownerId and huishoudboekje correctly on ngOnInit', () => {
     const userId = 'test-user-id';
 
-    // Simulate successful getCurrentUserId() call
     mockAuthService.getCurrentUserId.and.returnValue(of(userId));
 
-    // Trigger ngOnInit
     component.ngOnInit();
     fixture.detectChanges();
 

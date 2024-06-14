@@ -9,7 +9,7 @@ describe('AuthService', () => {
     TestBed.configureTestingModule({
       providers: [
         AuthService,
-        { provide: AngularFireAuth, useValue: {} } // Mock AngularFireAuth with an empty object
+        { provide: AngularFireAuth, useValue: {} }
       ]
     });
     service = TestBed.inject(AuthService);
