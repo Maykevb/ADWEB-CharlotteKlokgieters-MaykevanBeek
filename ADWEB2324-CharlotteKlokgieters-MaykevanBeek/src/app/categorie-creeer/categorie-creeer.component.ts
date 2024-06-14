@@ -21,6 +21,7 @@ export class CategorieCreeerComponent {
   constructor(private service: CategorieService, private authService: AuthService) {
     const authSub = this.authService.getCurrentUserId().subscribe(userId => {
       this.ownerId = userId;
+      this.categorie = new Categorie("", "", this.ownerId);
     });
 
     this.subscriptions.add(authSub);
@@ -34,7 +35,7 @@ export class CategorieCreeerComponent {
         if (categorieExists) {
           this.bestaatAl = true;
         } else {
-          if (this.categorie.eindDatum === undefined) {
+          if (this.categorie.eindDatum === undefined || this.categorie.eindDatum == undefined || !this.categorie.eindDatum) {
             this.categorie.eindDatum = null;
           }
 
