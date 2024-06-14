@@ -5,7 +5,6 @@ import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
 import { FormBuilder } from '@angular/forms';
 import { of } from 'rxjs';
-import firebase from 'firebase/app';
 
 describe('RegisterComponent', () => {
   let component: RegisterComponent;
@@ -25,13 +24,16 @@ describe('RegisterComponent', () => {
         { provide: AuthService, useValue: mockAuthService },
         { provide: Router, useValue: mockRouter }
       ]
-    })
-      .compileComponents();
+    }).compileComponents();
   });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(RegisterComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
   });
 });

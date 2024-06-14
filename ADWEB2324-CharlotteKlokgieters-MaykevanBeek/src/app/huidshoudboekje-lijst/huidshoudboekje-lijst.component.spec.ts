@@ -5,7 +5,7 @@ import { HttpClientModule } from '@angular/common/http'; // Add if HttpClient is
 import { HuidshoudboekjeLijstComponent } from './huidshoudboekje-lijst.component';
 import { HuishoudboekjeService } from '../huishoudboekje.service';
 import { AuthService } from '../auth.service';
-import {Router, RouterModule} from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { of } from 'rxjs';
 import { Huishoudboekje } from '../models/huishoudboekje.model';
 import { HuishoudboekjeCreeerComponent } from "../huishoudboekje-creeer/huishoudboekje-creeer.component";

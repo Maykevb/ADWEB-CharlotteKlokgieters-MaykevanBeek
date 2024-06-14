@@ -2,22 +2,30 @@ import { TestBed, ComponentFixture } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { HuishoudboekjeCreeerComponent } from './huishoudboekje-creeer.component';
 import { HuishoudboekjeService } from '../huishoudboekje.service';
-
-import { Huishoudboekje } from '../models/huishoudboekje.model';
+import { AngularFireAuth, AngularFireAuthModule } from "@angular/fire/compat/auth";
+import {AuthService} from "../auth.service";
+import {of} from "rxjs";
 
 describe('HuishoudboekjeCreeerComponent', () => {
   let component: HuishoudboekjeCreeerComponent;
   let fixture: ComponentFixture<HuishoudboekjeCreeerComponent>;
   let mockHuishoudboekjeService: jasmine.SpyObj<HuishoudboekjeService>;
+  let mockAuthService: jasmine.SpyObj<AuthService>;
 
   beforeEach(async () => {
     mockHuishoudboekjeService = jasmine.createSpyObj('HuishoudboekjeService', ['addHuishoudboekje']);
+    mockAuthService = jasmine.createSpyObj('AuthService', { getCurrentUserId: of('test-user-id') });
 
     await TestBed.configureTestingModule({
       declarations: [HuishoudboekjeCreeerComponent],
-      imports: [FormsModule], // Importeer FormsModule voor ngModel binding
+      imports: [
+        FormsModule,
+        AngularFireAuthModule,
+      ], // Importeer FormsModule voor ngModel binding
       providers: [
-        { provide: HuishoudboekjeService, useValue: mockHuishoudboekjeService }
+        { provide: HuishoudboekjeService, useValue: mockHuishoudboekjeService },
+        { provide: AngularFireAuth, useValue: {} },
+        { provide: AuthService, useValue: mockAuthService }
       ]
     }).compileComponents();
   });

@@ -24,13 +24,32 @@ describe('LoginComponent', () => {
         { provide: AuthService, useValue: mockAuthService },
         { provide: Router, useValue: mockRouter }
       ]
-    })
-      .compileComponents();
+    }).compileComponents();
   });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(LoginComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+
+  it('form invalid when empty', () => {
+    expect(component.signInForm.valid).toBeFalsy();
+  });
+
+  it('should call signInWithEmailAndPass method', () => {
+    const userData = { email: 'test@test.com', password: '123456' };
+    component.signInForm.setValue(userData);
+
+    mockAuthService.signInEmailAndPass.and.returnValue(of({})); // Mock successful sign-in
+
+    component.signInWithEmailAndPass();
+
+    expect(mockAuthService.signInEmailAndPass).toHaveBeenCalledWith(userData);
+    expect(mockRouter.navigateByUrl).toHaveBeenCalledWith('huishoudboekjes-overzicht');
   });
 });

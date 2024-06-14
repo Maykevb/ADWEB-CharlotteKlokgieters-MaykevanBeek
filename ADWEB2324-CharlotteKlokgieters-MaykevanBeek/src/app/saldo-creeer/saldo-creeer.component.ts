@@ -15,7 +15,9 @@ export class SaldoCreeerComponent {
 
   @Input() huishoudboekje: string | null | undefined;
 
-  constructor(private service: SaldoService, private authService: AuthService) {
+  constructor(private service: SaldoService, private authService: AuthService) { }
+
+  ngOnInit(): void {
     this.authService.getCurrentUserId().subscribe(userId => {
       this.ownerId = userId;
       this.saldo = new Saldo("", "", this.ownerId);
